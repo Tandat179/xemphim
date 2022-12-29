@@ -38,6 +38,7 @@ function AuthProvider({ children }) {
       );
         // Check Token
       if (response.data.success) {
+        console.log(response,"response");
         dispatch(loginSuccess(response.data));
         localStorage.setItem("auth-token", response.data.token);
       }
@@ -190,11 +191,14 @@ function AuthProvider({ children }) {
     }
   };
 
+
   // Set Message
   const setMessage = () => {
     dispatch(setMessageFail());
   };
-
+  const setUser = (acc) => {
+    dispatch(loginSuccess(acc));
+  }
   const authContext = {
     authState,
     loginUser,
@@ -206,6 +210,7 @@ function AuthProvider({ children }) {
     setMessage,
     forgotPassword,
     resetPassword,
+    setUser
   };
 
   return (

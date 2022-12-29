@@ -16,7 +16,6 @@ function ListMovieCustom({filterCustome}) {
   }
   const {data,isLoading} = useQuery([filterCustome],fetchListMoviceFilter)
 
-
   return (
     <Splide
       options={{
@@ -36,6 +35,7 @@ function ListMovieCustom({filterCustome}) {
                 // style={{ backgroundImage: `url(${values.product.images[0].url})` }}
 
               >
+               { values.product.ispremium &&   <img style={{position : 'absolute' , width  :'150px' , top : -20}} src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png" alt="p"/>}
                 <Button></Button>
               </div>
               <div className="card-title">

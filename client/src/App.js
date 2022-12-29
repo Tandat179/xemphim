@@ -50,6 +50,7 @@ import {
 } from "@tanstack/react-query";
 import ProductsSpecial from "./component/product/ProductsSpecial";
 import ProductsV2 from "./component/product/ProductsV2";
+import PaymentPage from "./component/Payment/PaymentPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
         <Routes>
           <Route extact path="/product/:id" element={<ProductDetails />} />
           <Route extact path="/products" element={<ProductsV2 />} />
+          <Route extact path="/payment" element={<PaymentPage />} />
           <Route extact path="/productsSpecial" element={<ProductsSpecial />} />
           <Route extact path="/login" element={<Auth />} />
           <Route extact path="/cart" element={<Cart />} />

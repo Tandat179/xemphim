@@ -22,6 +22,7 @@ const ProductCard = ({ product }) => {
           className="movie-card"
           style={{ backgroundImage: `url(${product.images[0].url})` }}
         >
+       { product.ispremium &&   <img style={{position : 'absolute' , width  :'150px' , top : -20}} src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png" alt="p"/>}
           <Button>
             <i className="bx bx-play"></i>
           </Button>
@@ -36,6 +37,7 @@ const ProductCard = ({ product }) => {
         <div className="card-title">
           <h3>{product.name}</h3>
         </div>
+        
       </Link>
     </>
   );

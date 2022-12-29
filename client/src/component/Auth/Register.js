@@ -10,18 +10,14 @@ import "./Auth.css";
 
 export default function Register({registerTab,message,loadingShow,registerUser}) {
   const [image,setImage] = useState(null)
-  const [state,setState] = useState(false)
   const [avatarPreview, setAvatarPreview] = useState(ImageCard);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     console.log(errors);
     const registerSubmit = async (data) => {
-      if(image){
           loadingShow();
       await registerUser({...data,avatar : image});
-      }
-      else{
-        setState(true)
-      }
+      
+    
     
     }
     const registerDataChange = (e) => {

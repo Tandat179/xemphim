@@ -31,17 +31,20 @@ function ListMovie({filter}) {
      {isLoading ? <div>...Loading</div> : data?.products.map((values, index) => 
           <SplideSlide key={v4()} >
             <Link to={`/product/${values._id}`}>
+            
               <div
                 className="movie-card"
                 style={{ backgroundImage: `url(${values.thumb_url})` }}
                 // style={{ backgroundImage: `url(${values.images[0].url})` }}
 
               >
+           { values.ispremium &&   <img style={{position : 'absolute' , width  :'150px' , top : -20}} src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png" alt="p"/>}
                 <Button></Button>
               </div>
               <div className="card-title">
                 <h3>{values.name}</h3>
               </div>
+              
             </Link>
           </SplideSlide>
     )}

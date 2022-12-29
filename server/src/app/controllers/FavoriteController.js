@@ -17,7 +17,6 @@ class FavoriteController {
    };
    fetchCountSubscribe = async (req, res, next) => {
       try {
-         console.log(req.params.id);
          const countSubscribe = await Favorite.countDocuments({ 'favoriteItems' : {$elemMatch : {product : req.params.id}} });
          res.json({
             success: true,
@@ -28,25 +27,35 @@ class FavoriteController {
       }
    };
    subscribe = async (req, res, next) => {
+      console.log(req.user._id,"req.user._id");
       try {
          const newFavorite = req.body
          const {status} = req.query
          const product = await Favorite.findOne({user : req.user._id})
-         console.log(product);
-         if(status === 'subscribe'){
-            const news = await Favorite.findOneAndUpdate({ user: req.user._id },{$push : {favoriteItems : newFavorite}})
-            res.json({
-               success: true,
-               news,
-            });
+         if(product){
+            if(status === 'subscribe'){
+               const news = await Favorite.findOneAndUpdate({ user: req.user._id },{$push : {favoriteItems : newFavorite}})
+               res.json({
+                  success: true,
+                  news,
+               });
+            }
+             else{
+               const news = await Favorite.findOneAndUpdate({ user: req.user._id },{$pull : {favoriteItems : newFavorite}})
+               res.json({
+                  success: false,
+                  news,
+               });
+             }
          }
-          else{
-            const news = await Favorite.findOneAndUpdate({ user: req.user._id },{$pull : {favoriteItems : newFavorite}})
+         else{
+            const newProduct = await Favorite.create({user : req.user._id , favoriteItems : [newFavorite]})
             res.json({
                success: false,
-               news,
+               newProduct,
             });
-          }
+         }
+         
        
       } catch (e) {
          return next(new ErrorHander(e, 400));

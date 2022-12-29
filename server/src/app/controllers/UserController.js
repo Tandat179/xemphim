@@ -36,7 +36,6 @@ class UserController {
          }
 
          const hashedPassword = await argon2.hash(password);
-
          // Create user variable with User Module
          const user = await User({
             name,
@@ -60,6 +59,7 @@ class UserController {
          sendToken(user, accessToken, res);
          // res.json({ success: true, user, accessToken });
       } catch (e) {
+         console.log(e);
          return next(new ErrorHander(e, 400));
       }
    };
@@ -325,6 +325,21 @@ class UserController {
       try {
          const user = await User.findById(req.params.id);
 
+         if (!user) {
+            return next(new ErrorHander('User not found', 404));
+         }
+
+         res.json({ success: true, user });
+      } catch (e) {
+         return next(new ErrorHander(e, 401));
+      }
+   };
+   updateRankUser = async (req, res, next) => {   
+      // Get Detail Once User
+      try {
+         const user = await User.findById(req.query.id);
+         user.rank = "premium"
+         await user.save()
          if (!user) {
             return next(new ErrorHander('User not found', 404));
          }

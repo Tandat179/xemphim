@@ -13,6 +13,7 @@ const UserController = require('../app/controllers/UserController');
 router.post('/register', UserController.register);
 //Login
 router.post('/login', UserController.login);
+router.post('/updateRankUser', UserController.updateRankUser);
 //Logout
 router.get('/logout', UserController.logout);
 // Forget Password
