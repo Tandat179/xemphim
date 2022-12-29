@@ -1,0 +1,63 @@
+html {
+  font-size: 80%;
+}
+body {
+  font-size: 1.6rem;
+}
+li {
+  font-size: 1.6rem;
+  list-style: none;
+}
+.filter-green {
+  filter: invert(108%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 1.6rem;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(194, 0, 0);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 6vh;
+  background: rgb(0, 128, 255);
+}
+.nav__brand {
+  text-transform: uppercase;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 3rem;
+  color: rgb(255, 7, 7);
+}
+.nav__toggler {
+  display: none;
+}
+
+/* Active Class */
+.nav__active {
+  transform: translateX(0%);
+}
+
+/* Toggle Icon Animation */
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-4px, 5px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-4px, -5px);
+}

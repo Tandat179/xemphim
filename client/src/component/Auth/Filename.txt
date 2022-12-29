@@ -1,0 +1,13 @@
+/////////////////Auth///////////////////
+
+
+Auth: xử lý để render ra màn  hình là Login or Register.
+ForgotPassword: Form để lấy lại mật khẩu.
+LoginForm: Form Login thôi.
+Profile: Profile User.
+RegisterForm: form Đăng ký.
+ResetPassword: chứa form dùng ResetPassword.
+UpdatePassword: Update Password User.
+Update Profile: Update Thông tin người dùng.
+
+/////////////////Auth///////////////////

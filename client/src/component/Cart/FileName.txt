@@ -1,0 +1,13 @@
+///////////////////////Cart////////////////////////
+
+
+Cart: các giao diện của giỏ hàng.
+CartItemCard: chứa các thành phần của CardItem Link to , Image, Name, Price 
+CheckoutStreps: bước thủ tục thanh toán (cần tìm hiêu)
+ConfirmOrder: Ở đây Order sẽ hiển thị ra tiền thuế địa chỉ shipping v.v
+OrderSuccess:
+Shipping: Form Shipping
+
+
+
+///////////////////////Cart////////////////////////

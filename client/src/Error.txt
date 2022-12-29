@@ -1,0 +1,7 @@
+File: Edit Admin/User Chưa sửa ảnh được.
+All product trong Dashboard Admin.
+Pagnition Phân trang chọn chưa được
+Create 1 product nào đó và nó error ở hình ảnh.
+Có vẻ đang bị lỗi ở Phần Category
+Search Item.
+Xem phim được.

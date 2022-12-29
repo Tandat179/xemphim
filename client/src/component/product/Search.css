@@ -1,0 +1,63 @@
+.searchBox {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  border-radius: 30px;
+  left: 0;
+}
+
+/* 
+
+border: 0;
+background-color: $black;
+padding: 0.5rem 1.5rem;
+font-size: 1rem;
+border-radius: $border-radius;
+color: $txt-color;
+font-family: $font-family; */
+
+.searchBox > input[type='text'] {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
+  background-color: rgb(0, 0, 0);
+  border-radius: 30px;
+  color: rgba(255, 255, 255, 0.637);
+  padding: 1vmax 2vmax;
+  width: 50%;
+
+  font: 300 1.1vmax cursive;
+  box-sizing: border-box;
+  height: 8%;
+}
+
+.searchBox > input[type='submit'] {
+  height: 8%;
+  border-radius: 30px;
+  background-color: tomato;
+
+  padding: 1vmax;
+  width: 10%;
+  font: 300 1.1vmax 'Roboto';
+  cursor: pointer;
+  color: white;
+  transition: all 0.5s;
+}
+
+.searchBox > input[type='submit']:hover {
+  background-color: rgb(55, 97, 214);
+}
+
+@media screen and (max-width: 600px) {
+  .searchBox > input[type='text'] {
+    width: 100%;
+    font: 300 4vw cursive;
+    height: 10%;
+  }
+
+  .searchBox > input[type='submit'] {
+    height: 10%;
+    width: 30%;
+    font: 300 4vw 'Roboto';
+  }
+}

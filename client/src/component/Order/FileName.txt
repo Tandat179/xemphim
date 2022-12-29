@@ -1,0 +1,2 @@
+MyOrder: Show ra các Item nào đã và đang có của User.
+OrderDetail: để cụ thể chi tiết là cái Order đó đến đâu rồi tại vì 1 người dùng có thể có nhiều cái Order.

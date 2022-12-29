@@ -1,0 +1,14 @@
+/////////////Admin//////////////
+
+Dashboard: Chứa các vòng tròn cũng như các line thống kê cho người quản trị viên.
+NewProduct: Chứa form khởi tạo sản phẩm mới
+OrderList: Trả ra các các trị đã Order và nó là 1 Component
+Order Process: ...
+ProductList: ... Đang bị lỗi!!!
+ReviewList: Cũng là một list để trả ra các giá trị về (Component)
+Sidebar: chỉ là sidebar. (^.v.^)
+UpdateProduct: ...Đang bị lỗi!!!
+Update User: ...
+UserList: trả về các user(Đột nó làm 1 rập form)
+
+//////////////Admin//////////////
