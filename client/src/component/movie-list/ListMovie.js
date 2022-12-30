@@ -11,6 +11,9 @@ import { ProductContext } from "../../context/product/ProductContext";
 import Play from "../../assets/play.png";
 import axiosClient from '../../api/axiosClient'
 import { useQuery } from "@tanstack/react-query";
+
+import { FaPlay } from 'react-icons/fa';
+
 function ListMovie({filter}) {
   const fetchListMoviceFilter = async() => {
     const res = await axiosClient.get(`/product/filter?${filter.filter}=${filter.value}`)
@@ -39,7 +42,7 @@ function ListMovie({filter}) {
 
               >
            { values.ispremium &&   <img style={{position : 'absolute' , width  :'150px' , top : -20}} src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png" alt="p"/>}
-                <Button></Button>
+                <Button><FaPlay/></Button>
               </div>
               <div className="card-title">
                 <h3>{values.name}</h3>
