@@ -47,8 +47,6 @@ const ProductDetails = () => {
     return product.reviews && product.reviews.sort(() => -1);
   };
 
-  console.log(ReviewReverse());
-
   // Quantity of Stock
   const increaseQuantity = () => {
     if (product.Stock <= quantity) return;

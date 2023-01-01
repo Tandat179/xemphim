@@ -15,7 +15,6 @@ function ListMovieCustom({filterCustome}) {
     return res.data
   }
   const {data,isLoading} = useQuery([filterCustome],fetchListMoviceFilter)
-
   return (
     <Splide
       options={{
@@ -27,7 +26,7 @@ function ListMovieCustom({filterCustome}) {
       aria-label="My Favorite Images"
     >
      {isLoading ? <div>...Loading</div> : data?.products.map((values, index) => 
-          <SplideSlide key={v4()} >
+         {values.products &&  <SplideSlide key={v4()} >
             <Link to={`/product/${values.product._id}`}>
               <div
                 className="movie-card"
@@ -42,7 +41,7 @@ function ListMovieCustom({filterCustome}) {
                 <h3>{values.product.name}</h3>
               </div>
             </Link>
-          </SplideSlide>
+          </SplideSlide>}
     )}
     </Splide>
   );

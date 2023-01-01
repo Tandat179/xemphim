@@ -61,6 +61,42 @@ class FavoriteController {
          return next(new ErrorHander(e, 400));
       }
    };
+   fetchTopFavorite = async (req, res, next) => {
+      try {
+         const products = await Favorite.find({}).select('favoriteItems')
+         // const 
+         let listTop = []
+         products.forEach(e => {
+            e.favoriteItems.forEach(f => {
+               const index = listTop.findIndex((ee) => JSON.stringify(ee.product) === JSON.stringify(f.product))
+               if(index !== -1){;
+                  const item = listTop[index]
+                  const news = {...item,count : item.count + 1}
+                  listTop.splice(index,1,news)
+               }
+               else{
+                  listTop.push({product : f.product , count : 1})
+               }
+               
+            })
+         })
+         const newListTop = listTop.sort((a,b) => b.count - a.count)
+         const slicedArray = newListTop.slice(0, 5);
+         const listId = slicedArray.map(e => e.product)
+         const productss =  await Product.find({_id : {$in : listId}})
+         const listCuoi = productss.map(e => {
+            const item = slicedArray.find(f => JSON.stringify(f.product) === JSON.stringify(e._id))
+            return {...item, product : e}
+         })
+         
+         res.json({
+            success: true,
+            listCuoi : listCuoi.sort((a,b) => b.count - a.count)
+         });
+      } catch (e) {
+         return next(new ErrorHander(e, 400));
+      }
+   };
 }
 
 module.exports = new FavoriteController();

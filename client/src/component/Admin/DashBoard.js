@@ -12,6 +12,8 @@ import { ProductContext } from "../../context/product/ProductContext";
 import { BannerContext} from '../../context/banner/BannerContext'
 
 import LoadingModel from "../Loading/loading";
+import ChartDashbond from "./ChartDashbond.js";
+import ChartDashbondFavorite from "./ChartDashbondFavorite.js";
 
 ChartJS.register(...registerables);
 const Dashboard = () => {
@@ -100,7 +102,7 @@ const Dashboard = () => {
 
       {/* Location Sidebar left stay */}
       <Sidebar/>
-      <LoadingModel show={isLoading} />
+      {/* <LoadingModel show={isLoading} /> */}
 
       <div className="dashboardContainer">
         <h2>Dashboard</h2>
@@ -135,7 +137,10 @@ const Dashboard = () => {
           </div>
 
         </div>
-       
+       {/* new */}
+      <ChartDashbond title="Thống kê lượt xem" field="CountView" titleRight="Phim có lượt xem cao nhất"/>
+      <ChartDashbond title="Thống kê lượt Thích" field="CountLike" titleRight="Phim có lượt Thích cao nhất"/>
+      <ChartDashbondFavorite />
           {/* Line of Dashboard */}
           <div className="lineChart">
             <Line data={lineState} />

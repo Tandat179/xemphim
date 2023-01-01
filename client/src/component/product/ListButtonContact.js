@@ -42,7 +42,6 @@ export default function ListButtonContact({id}) {
           };
     
           const res = await axios.get(`http://localhost:4000/favorite/myFavorites`,config)
-          console.log(res);
           const is = res.data.favorites[0].favoriteItems.some(e => e.product === id)
           setIsFavorite(is)
         } catch (error) {

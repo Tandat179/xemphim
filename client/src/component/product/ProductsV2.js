@@ -31,17 +31,18 @@ const fetchApi = useCallback(async() => {
     return res.data
   },[useSelector(state => state.PageStore)])
 const {data,isLoading} = useQuery([link],fetchApi)
-console.log(data,category);
+console.log(data);
 const setCurrentPageNo = (e) => {
     dispatch(setfilter({key : "currentPage",value : e}))
   };
-
-
-
   return( <>
   {isLoading && <LoadingModal show={isLoading} />}
   <h2 className="productsHeading">Products</h2>
-  <form className="searchBox">
+  <form onSubmit={(e) => {
+    e.preventDefault();
+    dispatch(setfilter({key : "keyword" , value : keySearch}))
+    dispatch(setfilter({key : "currentPage" , value : 1}))
+  }} className="searchBox">
     {/* Input Search Items */}
     <input
       type="text"
@@ -52,7 +53,7 @@ const setCurrentPageNo = (e) => {
     />
 
     {/* Submit Search */}
-    <Button onClick={() => dispatch(setfilter({key : "keyword" , value : keySearch}))} type="submit" value="Search">
+    <Button  type="submit" value="Search">
       Search
     </Button>
   </form>

@@ -1,0 +1,102 @@
+.containers {
+    color: #333;
+    flex: 1;
+  }
+  
+  .sidebar {
+    padding:  0!important;
+  }
+  
+  .ranking-title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .ranking-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .ranking-item {
+    border-bottom: 1px solid #ededed;
+  }
+  
+  .ranking-item:first-child {
+    border-top: 1px solid #ededed;
+  }
+  
+  .ranking-card {
+    color: inherit;
+    display: flex;
+    text-decoration: none;
+    padding:   0!important;
+  }
+  
+  .ranking-image {
+    margin: 0 1rem 0 0;
+    position: relative;
+  }
+  
+  .ranking-thumbnail {
+    width: 6rem;
+  }
+  
+  .ranking-badge {
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 9999px;
+    color: #888;
+    display: flex;
+    font-size: 0.75rem;
+    height: 1.5rem;
+    justify-content: center;
+    left: -0.5rem;
+    position: absolute;
+    top: -0.5rem;
+    width: 1.5rem;
+  }
+  
+  /* 1位 */
+  .ranking-item:nth-child(1) .ranking-badge {
+    background-color: #d9b340;
+    border: 1px solid #d9b340;
+    color: #fff;
+  }
+  
+  /* 2位 */
+  .ranking-item:nth-child(2) .ranking-badge {
+    background-color: #6f7b83;
+    border: 1px solid #6f7b83;
+    color: #fff;
+  }
+  
+  /* 3位 */
+  .ranking-item:nth-child(3) .ranking-badge {
+    background-color: #a15326;
+    border: 1px solid #a15326;
+    color: #fff;
+  }
+  
+  .ranking-shop-name {
+    color: #888;
+    font-size: 0.75rem;
+  }
+  
+  .ranking-description {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0.5rem 0 0 0;
+  }
+  
+  .ranking-card:hover .ranking-thumbnail {
+    opacity: 0.75;
+  }
+  
+  .ranking-card:hover .ranking-description {
+    text-decoration: underline;
+  }
+  

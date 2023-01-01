@@ -10,6 +10,7 @@ const FavoriteController = require('../app/controllers/FavoriteController');
 router.get('/myFavorites', isAuthenticatedUser, FavoriteController.myFavorites);
 router.post('/subscribe', isAuthenticatedUser, FavoriteController.subscribe);
 router.get('/fetchCountSub/:id', FavoriteController.fetchCountSubscribe);
+router.get('/fetchTopFavorite', FavoriteController.fetchTopFavorite);
 // router.get(
 //    '/me/:id',
 //    isAuthenticatedUser,

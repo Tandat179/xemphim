@@ -42,7 +42,6 @@ router.post('/increaseLike/:id',async(req,res)=>{
     const {id} = req.params;
     const {status} = req.query;
     const product = await View.findOne({product : id})
-    console.log(status);
     if(product){
         if(status === 'giam'){
             if(product.CountLike !== 0)
@@ -91,6 +90,10 @@ router.get('/filterCustome',async(req,res)=>{
     res.status(200).json({products})
 }
 )
-
+router.get('/getTopProduct' , async (req,res) => {
+    const {field} = req.query
+    const products = await View.find({}).sort({[field] : -1}).populate('product').limit(5)
+    res.status(200).json(products)
+})
 
 module.exports = router;

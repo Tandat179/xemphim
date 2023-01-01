@@ -13,8 +13,31 @@ import axiosClient from '../../api/axiosClient'
 import { useQuery } from "@tanstack/react-query";
 
 import { FaPlay } from 'react-icons/fa';
-
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
 function ListMovie({filter}) {
+  const [perPage,setPerPage] = useState(6)
+
+  useEffect(() => {
+    function handleResize() {
+      const {width} = getWindowDimensions()
+      console.log(width);
+      if(width <= 1024){
+        setPerPage(3)
+      }
+      else{
+        setPerPage(6)
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const fetchListMoviceFilter = async() => {
     const res = await axiosClient.get(`/product/filter?${filter.filter}=${filter.value}`)
     return res.data
@@ -24,9 +47,10 @@ function ListMovie({filter}) {
   return (
     <Splide
       options={{
+
         rewind: false,
         gap: "1rem",
-        perPage: 6,
+        perPage: perPage,
         perMove: 1,
       }}
       aria-label="My Favorite Images"
