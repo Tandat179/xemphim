@@ -26,7 +26,7 @@ function ListMovieCustom({filterCustome}) {
       aria-label="My Favorite Images"
     >
      {isLoading ? <div>...Loading</div> : data?.products.map((values, index) => 
-         {values.products &&  <SplideSlide key={v4()} >
+       <SplideSlide key={v4()} >
             <Link to={`/product/${values.product._id}`}>
               <div
                 className="movie-card"
@@ -41,7 +41,7 @@ function ListMovieCustom({filterCustome}) {
                 <h3>{values.product.name}</h3>
               </div>
             </Link>
-          </SplideSlide>}
+          </SplideSlide>
     )}
     </Splide>
   );
