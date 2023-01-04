@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import React, { useState } from 'react'
 import axiosClient from '../../api/axiosClient'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Ranking from './Ranking';
 import Button from 'react-bootstrap/Button';
+import TableFavorite from './TableFavorite';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ChartDashbondFavorite() {
+  const [isShowTable,setIsShowTable] = useState(false)
     const {data,isLoading} = useQuery(['asdasddsada'],async() => {
         const res = await axiosClient.get(`/favorite/fetchTopFavorite`)
         return res.data
@@ -46,9 +48,10 @@ export default function ChartDashbondFavorite() {
    <div>
    <h1 style={{textAlign : 'center' , color : 'red' , textShadow : '0 0 5px #999'}}></h1>
      <div style={{display : 'flex' , justifyContent : 'space-between' , width : '100%' , padding : '50px'}}>
-      <div style={{width : '50%' , display : 'flex' ,flexDirection : 'column' , alignItems : 'center' ,gap : '20px'}} >  <Pie data={datas} /> <Button variant="primary">Xem thêm</Button></div>
+      <div style={{width : '50%' , display : 'flex' ,flexDirection : 'column' , alignItems : 'center' ,gap : '20px'}} >  <Pie data={datas} /> <Button onClick={() => setIsShowTable(!isShowTable)} variant="primary">Xem thêm</Button></div>
       {data &&  <Ranking field="count" title="Bảng xếp hạng lượt theo dõi" data={data.listCuoi}/>}
     </div>
+   { isShowTable && <TableFavorite />}
    </div>
   )
 }

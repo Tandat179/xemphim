@@ -40,7 +40,6 @@ const MyFavorites = () => {
         name: item.name,
         image: item.image,
       }));
-    console.log(rows);
   useEffect(() => {
     getMyFavorites();
   }, [loadUser]);

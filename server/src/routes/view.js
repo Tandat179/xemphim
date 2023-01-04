@@ -95,5 +95,13 @@ router.get('/getTopProduct' , async (req,res) => {
     const products = await View.find({}).sort({[field] : -1}).populate('product').limit(5)
     res.status(200).json(products)
 })
+router.get('/getTopProductPagination' , async (req,res) => {
+    const {field} = req.query
+    const limit = req.query.limit || 5
+    const page = req.query.page || 1
+    const count = await View.countDocuments({}).populate('product')
+    const products = await View.find({}).populate('product').skip(limit * (page-1)).limit(limit).sort({[field] : -1})
+    res.status(200).json({products,page,count})
+})
 
 module.exports = router;

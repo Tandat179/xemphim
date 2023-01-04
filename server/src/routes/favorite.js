@@ -11,6 +11,7 @@ router.get('/myFavorites', isAuthenticatedUser, FavoriteController.myFavorites);
 router.post('/subscribe', isAuthenticatedUser, FavoriteController.subscribe);
 router.get('/fetchCountSub/:id', FavoriteController.fetchCountSubscribe);
 router.get('/fetchTopFavorite', FavoriteController.fetchTopFavorite);
+router.get('/fetchTopFavoritePagination', FavoriteController.fetchTopFavoritePagination);
 // router.get(
 //    '/me/:id',
 //    isAuthenticatedUser,

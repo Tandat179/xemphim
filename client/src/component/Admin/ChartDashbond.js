@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import React, { useState } from 'react'
 import axiosClient from '../../api/axiosClient'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Ranking from './Ranking';
 import Button from 'react-bootstrap/Button';
+import TableAll from './TableAll';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ChartDashbond({title,field,titleRight}) {
+  const [isShowTable,setIsShowTable] = useState(false)
     const {data,isLoading} = useQuery([field],async() => {
         const res = await axiosClient.get(`/view/getTopProduct?field=${field}`)
         return res.data
@@ -37,6 +39,7 @@ export default function ChartDashbond({title,field,titleRight}) {
           },
         ],
       };
+
  data &&  data.forEach((e,i) => {
     const name = e.product.name
     datas.labels = [...datas.labels,name]
@@ -46,9 +49,10 @@ export default function ChartDashbond({title,field,titleRight}) {
    <div>
    <h1 style={{textAlign : 'center' , color : 'red' , textShadow : '0 0 5px #999'}}>{title}</h1>
      <div style={{display : 'flex' , justifyContent : 'space-between' , width : '100%' , padding : '50px'}}>
-      <div style={{width : '50%' , display : 'flex' ,flexDirection : 'column' , alignItems : 'center' ,gap : '20px'}} >  <Pie data={datas} /> <Button variant="primary">Xem thêm</Button></div>
+      <div style={{width : '50%' , display : 'flex' ,flexDirection : 'column' , alignItems : 'center' ,gap : '20px'}} >  <Pie data={datas} /> <Button onClick={() => setIsShowTable(!isShowTable)} variant="primary">Xem thêm</Button></div>
    {data &&  <Ranking field={field} title={titleRight} data={data}/>}
     </div>
+   {isShowTable &&  <TableAll field={field}/>}
    </div>
   )
 }
