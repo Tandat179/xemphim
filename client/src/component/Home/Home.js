@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { removeQueryFetch } from "../../redux/pageStore";
 import CategoryCate from "./CategoryCate";
 import { AuthContext } from "../../context/auth/AuthContext";
+import CateRecommend from "./CateRecommend";
 
 // import HeroSlide from "../hero-slide/HeroSlide";
 function Home() {
@@ -53,7 +54,8 @@ function Home() {
       <br></br>
 
       <div className="container" id="container">
-        <p>{user._id}</p>
+        {/* <p>{user._id}</p> */}
+        <CateRecommend />
         <Category
           title="Phim Hot"
           isHot={true}
