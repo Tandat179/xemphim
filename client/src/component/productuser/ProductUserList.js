@@ -7,6 +7,7 @@ import EditIcon from "../../assets/pencil-fill.svg";
 import DeleteIcon from "../../assets/trash-fill.svg";
 import LoadingModel from "../Loading/loading";
 import Sidebar from "../../component/Admin/SideBar";
+import deleteProduser from "../../context/produser/ProduserProvider";
 
 // import Sidebar from "./SideBar.js";
 import "./ProductList.css";
@@ -16,7 +17,7 @@ const ProduserUserList = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [keyword, setKeyword] = useState("");
   const {
-    produserState: { produsersAdmin },
+    produserState: { produsers },
     getAllProdusers,
     deleteProduser,
   } = useContext(ProduserContext);
@@ -41,8 +42,10 @@ const ProduserUserList = () => {
     );
   };
 
+
   const deleteProduserHandler = (id) => {
     loadingShow();
+    console.log("============================", id);
     deleteProduser(id);
   };
 
@@ -104,21 +107,20 @@ const ProduserUserList = () => {
 
   const rows = [];
   let STT = 1;
-  produsersAdmin &&
-    produsersAdmin.forEach((prouser, index) => {
+  produsers &&
+    produsers.forEach((produser, index) => {
       rows.push({
         stt: STT,
-
-        produserId: prouser._id,
-        category: prouser.category,
-        stock: prouser.stock,
-        // name: { name: prouser.name, images: prouser.images },
-        content: prouser.content,
-        ispremium: String(prouser.ispremium),
-        link_embed: prouser.link_embed,
+        produserId: produser._id,
+        category: produser.category,
+        stock: produser.stock,
+        // name: { name: produser.name, images: produser.images },
+        content: produser.content,
+        ispremium: String(produser.ispremium),
+        link_embed: produser.link_embed,
       });
       STT++;
-      // console.log(prouser.ispremium);
+      // console.log(produser.ispremium);
     });
 
   useEffect(() => {
@@ -139,12 +141,12 @@ const ProduserUserList = () => {
       <div className="dashboardProduct">
         <Sidebar />
         <div className="productListContainer">
-          <h1 id="productListHeading">ALL FILM </h1>
+          <h1 id="productListHeading">ALL Product User List </h1>
           <form className="searchBox">
             <input
               type="text"
               name="keyword"
-              placeholder="Search a Prouser ..."
+              placeholder="Search a produser ..."
               onChange={(e) => setKeyword(e.target.value)}
             />
           </form>

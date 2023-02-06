@@ -13,19 +13,25 @@ import Category from "./Category";
 import { useDispatch } from "react-redux";
 import { removeQueryFetch } from "../../redux/pageStore";
 import CategoryCate from "./CategoryCate";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 // import HeroSlide from "../hero-slide/HeroSlide";
 function Home() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     productState: { products },
     getProducts,
   } = useContext(ProductContext);
   const [isLoading, setLoading] = useState(true);
 
+  const {
+    authState: { isAuthenticated, user },
+    loadUser,
+  } = useContext(AuthContext);
+
   useEffect(() => {
-       getProducts().then(res =>  setLoading(false));
-       dispatch(removeQueryFetch())
+    getProducts().then((res) => setLoading(false));
+    dispatch(removeQueryFetch());
   }, []);
 
   return (
@@ -47,13 +53,38 @@ function Home() {
       <br></br>
 
       <div className="container" id="container">
-
-      <Category title="Phim Hot" isHot={true} filterCustom={{filterCustom : 'CountView' , value : -1}}/>
-      <Category title="Phim 2022" filter={{filter : 'year' , value : 2022}}/>
-      <Category title="Phim Premium" filter={{filter : 'ispremium' , value : true}}/>
-      <CategoryCate title="Hành động" filter={{filter : 'category' , value : "Hanh Dong"}}/>
-
-
+        <p>{user._id}</p>
+        <Category
+          title="Phim Hot"
+          isHot={true}
+          filterCustom={{ filterCustom: "CountView", value: -1 }}
+        />
+        <Category title="Phim 2022" filter={{ filter: "year", value: 2022 }} />
+        <Category
+          title="Phim Premium"
+          filter={{ filter: "ispremium", value: true }}
+        />
+        <Category
+          title="Phim Miễn Phí"
+          filter={{ filter: "ispremium", value: false }}
+        />
+        <CategoryCate
+          title="Hành động"
+          filter={{ filter: "category", value: "Hanh Dong" }}
+        />
+        Test
+        {/* <Category
+          title="approvefalse"
+          filter={{ filter: "approve", value: false }}
+        />
+        <Category
+          title="approvetrue"
+          filter={{ filter: "approve", value: false }}
+        /> */}
+        <CategoryCate
+          title="approveeee"
+          filter={{ filter: "approve", value: true }}
+        />
       </div>
     </Fragment>
   );

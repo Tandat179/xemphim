@@ -91,7 +91,7 @@ const UpdateProduser = () => {
     e.preventDefault();
     loadingShow();
     updateProduser(formUpdate, produserId);
-    navigate("/produser/list", { replace: true });
+    navigate("/produsers", { replace: true });
   };
 
   const updateProduserImagesChange = (e) => {

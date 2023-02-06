@@ -49,6 +49,33 @@ function ProductProvider({ children }) {
     }
   };
 
+
+  
+  const getProductsRecommendation = async (
+    page = 1,
+    price = [0, 25000],
+    category,
+    ratings = 0,
+    keyword = ""
+  ) => {
+    try {
+      let link = `http://localhost:4000/product/recommendation?page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&name=${keyword}`;
+
+      if (category) {
+        link = `http://localhost:4000/product/recommendation?page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&name=${keyword}&category=${category}`;
+      }
+
+      const response = await axios.get(link);
+
+      if (response.data.success) {
+        dispatch(getProductSuccess(response.data));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
   //Get Something Product
   const getOneProduct = async (id) => {
     try {
@@ -213,6 +240,7 @@ function ProductProvider({ children }) {
     updateProduct,
     getAllReviews,
     deleteReview,
+    getProductsRecommendation
   };
 
   return (

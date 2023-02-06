@@ -31,15 +31,16 @@ import UserList from "./component/Admin/UserList";
 import UpdateUser from "./component/Admin/UpdateUser";
 import ReviewList from "./component/Admin/ReviewList";
 import ListMovie from "./component/movie-list/ListMovie";
-import MyFavorites from "./component/favorite/MyFavorite";
 import NewBanner from "./component/Admin/NewBanner";
 import BannerList from "./component/Admin/BannerList";
 import UpdateBanner from "./component/Admin/UpdateBanner";
 import NewProductUser from "./component/productuser/NewProductUser";
-import ProductUserList from "./component/productuser/ProductUserList";
-import ProduserUserListad from "./component/Admin/ProductUserListad";
 import UpdateProdUser from "./component/productuser/UpdateProductUser";
 import UpdateProduserad from "./component/Admin/UpdateProductUserad";
+import MyFavorites from "./component/favorite/MyFavorite";
+import ProductUserList from "./component/productuser/ProductUserList";
+import ProductUserListad from "./component/Admin/ProductUserListad";
+// import ProduserUserListad from "./component/Admin/ProductUserListad";
 
 import {
   useQuery,
@@ -51,6 +52,7 @@ import {
 import ProductsSpecial from "./component/product/ProductsSpecial";
 import ProductsV2 from "./component/product/ProductsV2";
 import PaymentPage from "./component/Payment/PaymentPage";
+import ProductsRecommendation from "./component/product/ProductsRecommendation";
 const queryClient = new QueryClient();
 
 function App() {
@@ -76,6 +78,11 @@ function App() {
         <Routes>
           <Route extact path="/product/:id" element={<ProductDetails />} />
           <Route extact path="/products" element={<ProductsV2 />} />
+          <Route
+            extact
+            path="/product/recommendation/:id"
+            element={<ProductsRecommendation />}
+          />
           <Route extact path="/payment" element={<PaymentPage />} />
           <Route extact path="/productsSpecial" element={<ProductsSpecial />} />
           <Route extact path="/login" element={<Auth />} />
@@ -320,9 +327,10 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             extact
-            path="/admin/produser/:produserId"
+            path="/admin/produsersad/:produserId"
             element={
               <ProtectedRoute
                 user={isAuthenticated}
@@ -335,7 +343,7 @@ function App() {
 
           <Route
             extact
-            path="/produser/list"
+            path="/produsers"
             element={
               <ProtectedRoute
                 user={isAuthenticated}
@@ -345,7 +353,21 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
+            extact
+            path="admin/produsersad"
+            element={
+              <ProtectedRoute
+                user={isAuthenticated}
+                role={user ? user.role : ""}
+              >
+                <ProductUserListad />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* <Route
             extact
             path="/admin/produser/list"
             element={
@@ -356,7 +378,7 @@ function App() {
                 <ProduserUserListad />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
           <Route
             extact
@@ -397,7 +419,7 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             extact
             path="/admin/productuser"
             element={
@@ -408,7 +430,7 @@ function App() {
                 <ProduserUserListad />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
           <Route
             extact

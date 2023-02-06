@@ -73,7 +73,7 @@ export const deleteProductSuccess = (payload) => {
     payload,
   };
 };
-
+//bên này t xóa đc mà bên produser là k mạ
 export const deleteProductFail = (payload) => {
   return {
     type: DELETE_PRODUCT_FAIL,

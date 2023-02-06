@@ -10,6 +10,9 @@ export const ADD_REVIEWS_FAIL = "add_reivews_fail";
 export const GET_ALL_PRODUSER_SUCCESS = "get_all_produser_success";
 export const GET_ALL_PRODUSER_FAIL = "get_all_produser_fail";
 
+export const GET_ALL_PRODUSERSAD_SUCCESS = "get_all_produsersad_success";
+export const GET_ALL_PRODUSERSAD_FAIL = "get_all_produsersad_fail";
+
 export const CREATE_PRODUSER_SUCCESS = "create_produser_success";
 export const CREATE_PRODUSER_FAIL = "create_produser_fail";
 
@@ -18,6 +21,9 @@ export const DELETE_PRODUSER_FAIL = "delete_produser_fail";
 
 export const UPDATE_PRODUSER_SUCCESS = "update_produser_success";
 export const UPDATE_PRODUSER_FAIL = "update_produser_fail";
+
+export const UPDATE_PRODUSERSAD_SUCCESS = "update_produsersad_success";
+export const UPDATE_PRODUSERSAD_FAIL = "update_produsersad_fail";
 
 export const GET_ALL_REVIEW_SUCCESS = "get_all_review_success";
 export const GET_ALL_REVIEW_FAIL = "get_all_review_fail";
@@ -46,6 +52,8 @@ export const getAllReviewsSuccess = (payload) => {
   };
 };
 
+// cho t xem mấy cái xóa trc di m oke
+
 export const getAllReviewsFail = (payload) => {
   return {
     type: GET_ALL_REVIEW_FAIL,
@@ -66,6 +74,21 @@ export const updateProduserFail = (payload) => {
     payload,
   };
 };
+
+export const updateProdusersadSuccess = (payload) => {
+  return {
+    type: UPDATE_PRODUSERSAD_SUCCESS,
+    payload,
+  };
+};
+
+export const updateProdusersadFail = (payload) => {
+  return {
+    type: UPDATE_PRODUSERSAD_FAIL,
+    payload,
+  };
+};
+
 
 export const deleteProduserSuccess = (payload) => {
   return {
@@ -108,6 +131,21 @@ export const getAllProdusersFail = (payload) => {
     payload,
   };
 };
+
+export const getAllProdusersadSuccess = (payload) => {
+  return {
+    type: GET_ALL_PRODUSERSAD_SUCCESS,
+    payload,
+  };
+};
+
+export const getAllProdusersadFail = (payload) => {
+  return {
+    type: GET_ALL_PRODUSERSAD_FAIL,
+    payload,
+  };
+};
+
 
 export const addReviewsFail = (payload) => {
   return {

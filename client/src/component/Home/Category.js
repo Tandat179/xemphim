@@ -32,9 +32,10 @@ export default function Category({title,filter,filterCustom,isHot}) {
     </div>
     <br></br>
     {filter && <ListMovie filter={filter}/>}
+    
    {filterCustom && <ListMovieCustom filterCustom={filterCustom}/>}
-   
 
+     
     <div className="section__header mb2"></div>
     <br></br>
   </div>

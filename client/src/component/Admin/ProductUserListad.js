@@ -7,6 +7,7 @@ import EditIcon from "../../assets/pencil-fill.svg";
 import DeleteIcon from "../../assets/trash-fill.svg";
 import LoadingModel from "../Loading/loading";
 import Sidebar from "../../component/Admin/SideBar";
+import deleteProduser from "../../context/produser/ProduserProvider";
 
 // import Sidebar from "./SideBar.js";
 import "./ProductList.css";
@@ -16,8 +17,8 @@ const ProduserUserListad = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [keyword, setKeyword] = useState("");
   const {
-    produserState: { produsersAdmin },
-    getAllProdusers,
+    produserState: { produsers },
+    getAllProdusersad,
     deleteProduser,
   } = useContext(ProduserContext);
 
@@ -25,13 +26,13 @@ const ProduserUserListad = () => {
     setLoadingSubmit(true);
     setTimeout(() => {
       setLoadingSubmit(false);
-    }, 2000);
+    }, 100);
   };
 
   const formatterActions = (value) => {
     return (
       <>
-        <Link to={`/admin/produser/${value}`}>
+        <Link to={`/admin/produsersad/${value}`}>
           <img src={EditIcon} alt="icon" />
         </Link>
         <button onClick={() => deleteProduserHandler(value)}>
@@ -43,6 +44,7 @@ const ProduserUserListad = () => {
 
   const deleteProduserHandler = (id) => {
     loadingShow();
+    console.log("============================", id);
     deleteProduser(id);
   };
 
@@ -57,22 +59,23 @@ const ProduserUserListad = () => {
 
   const columns = [
     { key: "stt", name: "STT", minWidth: 120, flex: 0.1 },
-    {
-      key: "name",
-      name: "Name",
 
-      // formatter: (name, image) => {
-      //   return formatterName(name.row.name);
-      // },
-    },
+    // {
+    //   key: "name",
+    //   name: "Name",
+
+    //   // formatter: (name, image) => {
+    //   //   return formatterName(name.row.name);
+    //   // },
+    // },
 
     {
       key: "category",
       name: "Category",
     },
     {
-      key: "approve",
-      name: "Approve",
+      key: "produserId",
+      name: "produserId",
     },
 
     {
@@ -83,6 +86,10 @@ const ProduserUserListad = () => {
     {
       key: "ispremium",
       name: "Ispremium",
+    },
+    {
+      key: "approve",
+      name: "Approve",
     },
 
     {
@@ -103,18 +110,18 @@ const ProduserUserListad = () => {
 
   const rows = [];
   let STT = 1;
-  produsersAdmin &&
-    produsersAdmin.forEach((produser, index) => {
+  produsers &&
+    produsers.forEach((produser, index) => {
       rows.push({
         stt: STT,
-
         produserId: produser._id,
         category: produser.category,
-        approve: String(produser.approve),
-
+        stock: produser.stock,
         // name: { name: produser.name, images: produser.images },
         content: produser.content,
         ispremium: String(produser.ispremium),
+        approve: String(produser.approve),
+
         link_embed: produser.link_embed,
       });
       STT++;
@@ -123,14 +130,14 @@ const ProduserUserListad = () => {
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      await getAllProdusers();
+      await getAllProdusersad();
       setLoading(false);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    keyword ? getAllProdusers(keyword) : getAllProdusers();
+    keyword ? getAllProdusersad(keyword) : getAllProdusersad();
   }, [keyword]);
 
   return (
@@ -139,12 +146,12 @@ const ProduserUserListad = () => {
       <div className="dashboardProduct">
         <Sidebar />
         <div className="productListContainer">
-          {/* <h1 id="produserListHeading">ALL FILM </h1> */}
+          <h1 id="productListHeading">ALL Product User List (Admin) </h1>
           <form className="searchBox">
             <input
               type="text"
               name="keyword"
-              placeholder="Search a Produser ..."
+              placeholder="Search a produser ..."
               onChange={(e) => setKeyword(e.target.value)}
             />
           </form>

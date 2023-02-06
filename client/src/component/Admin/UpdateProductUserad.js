@@ -93,7 +93,7 @@ const UpdateProduserad = () => {
     e.preventDefault();
     loadingShow();
     updateProduserad(formUpdate, produserId);
-    navigate("/admin/produser/list", { replace: true });
+    navigate("/admin/produsersad", { replace: true });
   };
 
   const updateProduserImagesChange = (e) => {
@@ -133,7 +133,7 @@ const UpdateProduserad = () => {
             encType="multipart/form-data"
             onSubmit={updateProduserSubmitHandler}
           >
-            <h1>Update Produser</h1>
+            <h1>Update Produser (Admin)</h1>
             {/* Name */}
 
             <div>
@@ -381,7 +381,7 @@ const UpdateProduserad = () => {
             </div>
 
             <button id="createProductBtn" type="submit">
-              Update
+              Update (Admin)
             </button>
           </form>
         </div>

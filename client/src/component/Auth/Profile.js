@@ -31,24 +31,24 @@ function Profile() {
         <LoadingModal show={loading} />
       ) : isAuthenticated ? (
         <>
-
           <div className="profileContainer">
-           
             <div>
               <h1>My Profile</h1>
               <img src={user.avatar.url} alt={user.name} />
               <Link to="/updateProfile">Edit Profile</Link>
             </div>
             <div>
-
               <div>
                 <h4>Full Name</h4>
                 <p>{user.name}</p>
+                <p>{user._id}</p>
               </div>
 
               <div>
                 <h4>Email</h4>
                 <p>{user.email}</p>
+
+                <p>{user.id}</p>
               </div>
 
               <div>
@@ -60,7 +60,6 @@ function Profile() {
                 <Link to="/orders">My Orders</Link>
                 <Link to="/password/update">Change Password</Link>
               </div>
-              
             </div>
           </div>
         </>

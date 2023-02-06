@@ -5,12 +5,16 @@ import {
   ADD_REVIEWS_SUCCESS,
   GET_ALL_PRODUSER_FAIL,
   GET_ALL_PRODUSER_SUCCESS,
+  GET_ALL_PRODUSERSAD_FAIL,
+  GET_ALL_PRODUSERSAD_SUCCESS,
   CREATE_PRODUSER_FAIL,
   CREATE_PRODUSER_SUCCESS,
   DELETE_PRODUSER_FAIL,
   DELETE_PRODUSER_SUCCESS,
   UPDATE_PRODUSER_FAIL,
   UPDATE_PRODUSER_SUCCESS,
+  UPDATE_PRODUSERSAD_FAIL,
+  UPDATE_PRODUSERSAD_SUCCESS,
   GET_ALL_REVIEW_FAIL,
   GET_ALL_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
@@ -50,7 +54,17 @@ export const produserReducer = (state, action) => {
     case UPDATE_PRODUSER_SUCCESS:
       return {
         ...state,
-        produsersAdmin: state.produsersAdmin.map((produser) =>
+        produsers: state.produsers.map((produser) =>
+          produser._id === payload._id ? payload : produser
+        ),
+        produsers: state.produsers.map((produser) =>
+          produser._id === payload._id ? payload : produser
+        ),
+      };
+    case UPDATE_PRODUSERSAD_SUCCESS:
+      return {
+        ...state,
+        produsers: state.produsers.map((produser) =>
           produser._id === payload._id ? payload : produser
         ),
         produsers: state.produsers.map((produser) =>
@@ -60,20 +74,27 @@ export const produserReducer = (state, action) => {
     case DELETE_PRODUSER_SUCCESS:
       return {
         ...state,
-        produsersAdmin: state.produsersAdmin.filter(
+        produsers: state.produsers.filter(
           (produser) => produser._id !== payload
         ),
       };
     case CREATE_PRODUSER_SUCCESS:
       return {
         ...state,
-        produsersAdmin: [...state.produsersAdmin, payload],
+        produsers: [...state.produsers, payload],
       };
     case GET_ALL_PRODUSER_SUCCESS:
       return {
         ...state,
-        produsersAdmin: payload,
+        produsers: payload,
       };
+
+    case GET_ALL_PRODUSERSAD_SUCCESS:
+      return {
+        ...state,
+        produsers: payload,
+      };
+
     case ADD_REVIEWS_SUCCESS:
       const isReviewsExist = state.produser.reviews.find(
         (rv) => rv.user === payload.user

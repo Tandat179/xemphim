@@ -49,7 +49,7 @@ const Sidebar = () => {
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
               <select name="category">
                 <option value="">Choose Category</option>
-                {CATEGORIES.map((cate,i) => (
+                {CATEGORIES.map((cate, i) => (
                   <option key={i} value={cate}>
                     {cate}
                   </option>
@@ -92,7 +92,7 @@ const Sidebar = () => {
         </p>
       </Link>
 
-      <Link to="/admin/productuser">
+      <Link to="/admin/produsersad">
         <p>
           <img src={RateReviewIcon} alt="Ecommerce" className="svgIMG" />
           Film of User

@@ -35,7 +35,7 @@ const ProductDetails = () => {
   } = useContext(ProductContext);
   console.log(product);
   const {
-    authState: { isAuthenticated , user },
+    authState: { isAuthenticated, user },
   } = useContext(AuthContext);
   let body;
   const fetchIncreaseView = useCallback(async () => {
@@ -202,27 +202,47 @@ const ProductDetails = () => {
           </Button>
         )}
         <div>
-       
-         <div style={{position :'relative' , boxShadow : ' 0 0 5px 2px #999' , textAlign : 'center'}}>
-         <iframe
-            border="red"
-            width="100%"
-            height="515"
-            allowFullScreen={true}
-            src={`${ product.ispremium ? user.rank === "premium" ? product.link_embed : "" : product.link_embed}`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; 
+          <div
+            style={{
+              position: "relative",
+              boxShadow: " 0 0 5px 2px #999",
+              textAlign: "center",
+            }}
+          >
+            <iframe
+              border="red"
+              width="100%"
+              height="515"
+              allowFullScreen={true}
+              src={`${
+                product.ispremium
+                  ? user.rank === "premium"
+                    ? product.link_embed
+                    : ""
+                  : product.link_embed
+              }`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; 
           clipboard-write; encrypted-media; 
           gyroscope; picture-in-picture"
-          >
-            
-          </iframe>
-          {product.ispremium && user.rank !== "premium" && <div style={{position : 'absolute'  ,zIndex : 10000 , top : '50%' , left : '50%', transform: 'translate(-50%, -50%)'}}>
-            <h2>Bạn phải trở thành Thành viên Premium mới xem được</h2>
-            <Button onClick={() => navigate("/payment")}>Đăng kí Premium </Button>
-          </div>}
-         </div>
-          
+            ></iframe>
+            {product.ispremium && user.rank !== "premium" && (
+              <div
+                style={{
+                  position: "absolute",
+                  zIndex: 10000,
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                <h2>Bạn phải trở thành Thành viên Premium mới xem được</h2>
+                <Button onClick={() => navigate("/payment")}>
+                  Đăng kí Premium{" "}
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
         <ListButtonContact id={id} />
         <h3 className="reviewsHeading">REVIEWS</h3>
@@ -271,6 +291,7 @@ const ProductDetails = () => {
           <p className="noReviews">No Reviews Yet</p>
         )}
         {/* <ListContact /> */}
+        hrhh
         <CategoryDetails
           filter={{
             filter: "category",

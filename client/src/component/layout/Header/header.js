@@ -18,7 +18,6 @@ import Button from "react-bootstrap/Button";
 import logo from "../../../assets/tmovie.png";
 import "./header.scss";
 
-
 export const Header = () => {
   const headerNav = [
     {
@@ -30,9 +29,13 @@ export const Header = () => {
       path: "/products",
     },
     {
-      display: "Cart",
-      path: "/cart",
+      display: "Trend",
+      path: "/product/recommendation/63dfbb5abc884effdcede5df",
     },
+    // {
+    //   display: "Cart",
+    //   path: "/cart",
+    // },
   ];
 
   const { pathname } = useLocation();
@@ -52,8 +55,7 @@ export const Header = () => {
       }
     };
     window.addEventListener("scroll", shrinkHeader);
-    
-   
+
     return () => {
       window.removeEventListener("scroll", shrinkHeader);
     };
@@ -130,9 +132,9 @@ export const Header = () => {
                   )}
 
                   {user.role === "user" && (
-                    <NavDropdown.Item to="/produser/list" as={Link}>
+                    <NavDropdown.Item to="/produsers" as={Link}>
                       <img src={Manage} alt="cart" className="filter-green" />{" "}
-                      Film của tôi  
+                      Film của tôi
                     </NavDropdown.Item>
                   )}
 

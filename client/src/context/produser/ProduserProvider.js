@@ -9,11 +9,14 @@ import {
   getOneProduserSuccess,
   getAllProdusersSuccess,
   getAllProdusersFail,
+  getAllProdusersadSuccess,
+  getAllProdusersadFail,
   createProduserSuccess,
   createProduserFail,
   deleteProduserSuccess,
   deleteProduserFail,
   updateProduserSuccess,
+  updateProdusersadSuccess,
   updateProduserFail,
   // addReviewsSuccess,
   // getAllReviewsSuccess,
@@ -62,7 +65,7 @@ function ProduserProvider({ children }) {
       }
     } catch (e) {
       console.log("Ops");
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -108,7 +111,6 @@ function ProduserProvider({ children }) {
     }
   };
 
-  //Deleteproduser
   const deleteProduser = async (id) => {
     if (localStorage["auth-token"]) {
       setAuthToken(localStorage["auth-token"]);
@@ -125,6 +127,74 @@ function ProduserProvider({ children }) {
   };
 
   //Update Produser
+
+  //Get All produser
+  const getAllProdusers = async (keyword = "") => {
+    if (localStorage["auth-token"]) {
+      setAuthToken(localStorage["auth-token"]);
+    }
+    // let link = `http://localhost:4000/produser/admin/produsers`;
+
+    let link = `http://localhost:4000/produser/produsers`;
+
+    if (keyword) {
+      link = `http://localhost:4000/produser?name=${keyword}`;
+    }
+    try {
+      const response = await axios.get(link);
+      console.log("Hi Br This have Right");
+
+      if (response.data.success)
+        dispatch(getAllProdusersSuccess(response.data.produsers));
+    } catch (error) {
+      console.log("Hi Br This have Error");
+
+      dispatch(getAllProdusersFail(error.response.data.message));
+    }
+  };
+
+  //Get All produser admin
+  const getAllProdusersad = async (keyword = "") => {
+    if (localStorage["auth-token"]) {
+      setAuthToken(localStorage["auth-token"]);
+    }
+    // let link = `http://localhost:4000/produser/admin/produsers`;
+
+    let link = `http://localhost:4000/produser/produsersad`;
+
+    if (keyword) {
+      link = `http://localhost:4000/produser?name=${keyword}`;
+    }
+    try {
+      const response = await axios.get(link);
+      console.log("Hi Br This have Right");
+
+      if (response.data.success)
+        dispatch(getAllProdusersSuccess(response.data.produsers));
+    } catch (error) {
+      console.log("Hi Br This have Error");
+
+      dispatch(getAllProdusersFail(error.response.data.message));
+    }
+  };
+
+  const updateProduserad = async (formUpdate, idProduser) => {
+    if (localStorage["auth-token"]) {
+      setAuthToken(localStorage["auth-token"]);
+    }
+    try {
+      const response = await axios.put(
+        `http://localhost:4000/produser/updatead/${idProduser}`,
+        formUpdate
+      );
+
+      if (response.data.success)
+        dispatch(updateProduserSuccess(response.data.produser));
+    } catch (error) {
+      dispatch(updateProduserFail(error.response.data.message));
+    }
+  };
+
   const updateProduser = async (formUpdate, idProduser) => {
     if (localStorage["auth-token"]) {
       setAuthToken(localStorage["auth-token"]);
@@ -134,6 +204,7 @@ function ProduserProvider({ children }) {
         `http://localhost:4000/produser/update/${idProduser}`,
         formUpdate
       );
+      console.log("Update Thanh Cong");
 
       if (response.data.success)
         dispatch(updateProduserSuccess(response.data.produser));
@@ -142,68 +213,26 @@ function ProduserProvider({ children }) {
     }
   };
 
+  // const getAllProdusersad = async (keyword = "") => {
+  //   if (localStorage["auth-token"]) {
+  //     setAuthToken(localStorage["auth-token"]);
+  //   }
+  //   // let link = `http://localhost:4000/produser/admin/produsers`;
 
+  //   let link = `http://localhost:4000/produser/admin/produsers`;
 
-  const updateProduserad = async (formUpdate, idProduser) => {
-    if (localStorage["auth-token"]) {
-      setAuthToken(localStorage["auth-token"]);
-    }
-    try {
-      const response = await axios.put(
-        `http://localhost:4000/admin/produser/update/${idProduser}`,
-        formUpdate
-      );
+  //   if (keyword) {
+  //     link = `http://localhost:4000/produser?name=${keyword}`;
+  //   }
+  //   try {
+  //     const response = await axios.get(link);
 
-      if (response.data.success)
-        dispatch(updateProduserSuccess(response.data.produser));
-    } catch (error) {
-      dispatch(updateProduserFail(error.response.data.message));
-    }
-  };
-
-  //Get All produser
-  const getAllProdusers = async (keyword = "") => {
-    if (localStorage["auth-token"]) {
-      setAuthToken(localStorage["auth-token"]);
-    }
-    // let link = `http://localhost:4000/produser/admin/produsers`;
-
-    let link = `http://localhost:4000/produser/admin/produsers`;
-
-    if (keyword) {
-      link = `http://localhost:4000/produser?name=${keyword}`;
-    }
-    try {
-      const response = await axios.get(link);
-
-      if (response.data.success)
-        dispatch(getAllProdusersSuccess(response.data.produsers));
-    } catch (error) {
-      dispatch(getAllProdusersFail(error.response.data.message));
-    }
-  };
-
-  const getAllProdusersad = async (keyword = "") => {
-    if (localStorage["auth-token"]) {
-      setAuthToken(localStorage["auth-token"]);
-    }
-    // let link = `http://localhost:4000/produser/admin/produsers`;
-
-    let link = `http://localhost:4000/produser/admin/produsers`;
-
-    if (keyword) {
-      link = `http://localhost:4000/produser?name=${keyword}`;
-    }
-    try {
-      const response = await axios.get(link);
-
-      if (response.data.success)
-        dispatch(getAllProdusersSuccess(response.data.produsers));
-    } catch (error) {
-      dispatch(getAllProdusersFail(error.response.data.message));
-    }
-  };
-
+  //     if (response.data.success)
+  //       dispatch(getAllProdusersSuccess(response.data.produsers));
+  //   } catch (error) {
+  //     dispatch(getAllProdusersFail(error.response.data.message));
+  //   }
+  // };
 
   // //Get All Reviews
   // const getAllReviews = async (keyword = "") => {
@@ -256,6 +285,7 @@ function ProduserProvider({ children }) {
     getAllProdusers,
     createProduser,
     deleteProduser,
+    getAllProdusersadSuccess,
     updateProduser,
     // getAllReviews,
     // deleteReview,
