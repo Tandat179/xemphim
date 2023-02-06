@@ -1,11 +1,117 @@
 const Product = require('../model/Product');
+const User = require('../model/User');
 const ErrorHander = require('../../utils/errorhander');
 const ApiFeatures = require('../../utils/apiFeatures');
 const cloundinary = require('cloudinary');
 const removeVietnameseTones = require('../../constant/RemoveVietnam');
 const View = require('../model/View');
+const training = require('../../utils/trainning');
+
+let predicted_table = {};
 
 class ProductController {
+   //Trainning
+   training = async (req, res, next) => {
+      try {
+         predicted_table = await training();
+         res.json({
+            predicted_table,
+            success: true,
+            message: 'Training Success',
+         });
+      } catch (e) {
+         return next(new ErrorHander(e, 400));
+      }
+   };
+
+   recommendation = async (req, res, next) => {
+      try {
+         const isEmptyObj = obj => {
+            for (var key in obj) {
+               if (obj.hasOwnProperty(key)) return false;
+            }
+            return true;
+         };
+         const findTenVehicleBest = async () => {
+            return await Product.find({ quantity: { $gte: '1' } })
+               .select('_id')
+               .limit(10)
+               .sort({ ratings: -1, numberOfRental: -1 });
+         };
+
+         let predicted_vehicle = await findTenVehicleBest();
+
+         const isReviewed = async userId => {
+            const vehicles = await Product.find().lean();
+            for (let vehicle of vehicles) {
+               if (vehicle.reviews.length > 0) {
+                  for (let review of vehicle.reviews) {
+                     if (review.user.toString() === userId) {
+                        return true;
+                     }
+                  }
+               }
+            }
+            return false;
+         };
+
+         if (await isReviewed(req.params.id)) {
+            if (!isEmptyObj(predicted_table)) {
+               predicted_vehicle = [];
+               for (var i = 0; i < predicted_table.columnNames.length; ++i) {
+                  var user = predicted_table.columnNames[i];
+
+                  if (user === req.params.id) {
+                     // console.log("For user: " + user);
+                     for (var j = 0; j < predicted_table.rowNames.length; ++j) {
+                        var movie = predicted_table.rowNames[j];
+
+                        predicted_vehicle.push({
+                           _id: movie,
+                           predict: predicted_table.getCell(movie, user),
+                        });
+                     }
+                  }
+
+                  predicted_vehicle.sort((a, b) =>
+                     a.predict > b.predict ? -1 : 1,
+                  );
+               }
+            }
+
+            if (predicted_vehicle.length === 0) {
+               predicted_vehicle = await findTenVehicleBest();
+            }
+         }
+
+         const findTopTenRecommendation = async predictData => {
+            const result = [];
+            let count = 0;
+            while (result.length < 10) {
+               let vehicle = await Product.findById(predictData[count]._id);
+               result.push(vehicle);
+               count += 1;
+            }
+            return result;
+         };
+
+         console.log(predicted_vehicle);
+         const vehiclesResult = await findTopTenRecommendation(
+            predicted_vehicle,
+         );
+
+         res.json({
+            predicted_product: vehiclesResult,
+            count: vehiclesResult.length,
+            success: true,
+         });
+      } catch (e) {
+         return next(new ErrorHander(e, 400));
+      }
+   };
+
+   // Trainning
+
    // Create Producer
    createProduct = async (req, res, next) => {
       let images = [];

@@ -15,6 +15,8 @@ router.post(
    ProductController.createProduct,
 );
 
+router.get('/recommendation/:id', ProductController.recommendation);
+
 // Update Product
 router.put(
    '/update/:id',
@@ -74,6 +76,12 @@ router.get(
    ProductController.getAllReview,
 );
 
+router.get(
+   '/admin/training',
+   isAuthenticatedUser,
+   authorizeRole('admin'),
+   ProductController.training,
+);
 
 router.get('/', ProductController.getAllProduct);
 router.get('/filter', ProductController.filterProduct);
