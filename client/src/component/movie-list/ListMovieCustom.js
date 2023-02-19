@@ -1,23 +1,26 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import {v4} from 'uuid'
+import { v4 } from "uuid";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Pagination } from "swiper";
 import "@splidejs/react-splide/css";
 import "../Home/movie-card.scss";
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay } from "react-icons/fa";
 import Button from "../button/Button";
-import axiosClient from '../../api/axiosClient'
+import axiosClient from "../../api/axiosClient";
+import { FaPlay } from "react-icons/fa";
+
 import { useQuery } from "@tanstack/react-query";
-function ListMovieCustom({filterCustome}) {
-  const fetchListMoviceFilter = async() => {
-    const res = await axiosClient.get(`/view/filterCustome`)
-    return res.data
-    console.log(filterCustome,"filterCustome");
-  }
-  const {data,isLoading} = useQuery([filterCustome],fetchListMoviceFilter)
-  console.log(data,'dât');
+function ListMovieCustom({ filterCustome }) {
+  console.log(filterCustome, "filterCustome");
+  const fetchListMoviceFilter = async () => {
+    const res = await axiosClient.get(`/view/filterCustome`);
+    return res.data;
+    console.log(filterCustome, "filterCustome");
+  };
+  const { data, isLoading } = useQuery([filterCustome], fetchListMoviceFilter);
+  console.log(data, "dât");
   return (
     <Splide
       options={{
@@ -29,27 +32,36 @@ function ListMovieCustom({filterCustome}) {
       aria-label="My Favorite Images"
     >
       {/* values.products &&   */}
-     {isLoading ? <div>...Loading</div> : data?.products.map((values, index) => 
-         <SplideSlide key={v4()} >
-           <SplideSlide key={v4()} ></SplideSlide>
+      {isLoading ? (
+        <div>...Loading</div>
+      ) : (
+        data?.products.map((values, index) => (
+          <SplideSlide key={v4()}>
             <Link to={`/product/${values.product._id}`}>
               <div
                 className="movie-card"
                 style={{ backgroundImage: `url(${values.product.thumb_url})` }}
                 // style={{ backgroundImage: `url(${values.product.images[0].url})` }}
-
               >
-               { values.product.ispremium &&   <img style={{position : 'absolute' , width  :'150px' , top : -20}} src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png" alt="p"/>}
-                {/* <Button></Button> */}
-                <Button><FaPlay/></Button>
+                {values.product.ispremium && (
+                  <img
+                    style={{ position: "absolute", width: "150px", top: -20 }}
+                    src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png"
+                    alt="p"
+                  />
+                )}
+
+                <Button>
+                  <FaPlay />
+                </Button>
               </div>
               <div className="card-title">
                 <h3>{values.product.name}</h3>
               </div>
             </Link>
           </SplideSlide>
-          // </SplideSlide>
-    )}
+        ))
+      )}
     </Splide>
   );
 }
