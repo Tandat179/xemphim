@@ -1,4 +1,4 @@
-const Produser = require('../model/Produser');
+const Produser = require('../model/Product');
 const ErrorHander = require('../../utils/errorhander');
 const ApiFeatures = require('../../utils/apiFeatures');
 const cloundinary = require('cloudinary');
@@ -402,8 +402,9 @@ class ProduserController {
 
    //=============================ADMIN===============================
 
+   // const produsers = await Produser.find({ user: req.user._id });
    getAllProdusersad = async (req, res, next) => {
-      const produsers = await Produser.find();
+      const produsers = await Produser.find({ userFilm: true });
       res.status(200).json({
          success: true,
          // Response produser
@@ -468,6 +469,7 @@ class ProduserController {
                   urlfilm: req.body.urlfilm,
                   content: req.body.content,
                   category: req.body.category,
+                  approve: req.body.approve,
                   // stock: req.body.stock,
                   images: req.body.images,
                   ispremium: req.body.ispremium,

@@ -39,11 +39,7 @@ const productusersSchema = new mongoose.Schema({
       type: Boolean,
       required: [false, 'Film Premium?'],
    },
-   // price: {
-   //    type: Number,
-   //    // required: [true, 'Please Enter product price'],
-   //    maxLength: [8, 'Price can not exceed 8 characters'],
-   // },
+
    ratings: {
       type: Number,
       default: 0,
@@ -87,6 +83,11 @@ const productusersSchema = new mongoose.Schema({
       type: Boolean,
       default: 0,
       required: [false, 'Film Premium?'],
+   },
+   userFilm: {
+      type: Boolean,
+      default: 0,
+      required: [false, 'Film User?'],
    },
    reviews: [
       {

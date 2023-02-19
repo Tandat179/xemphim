@@ -1,6 +1,9 @@
 const Favorite = require('../model/Favorite');
 const Product = require('../model/Product');
 const ErrorHander = require('../../utils/errorhander');
+const ApiFeatures = require('../../utils/apiFeatures');
+const cloundinary = require('cloudinary');
+
 const User = require('../model/User');
 
 class FavoriteController {
@@ -15,6 +18,27 @@ class FavoriteController {
          return next(new ErrorHander(e, 400));
       }
    };
+
+   deleteMyFavorite = async (req, res, next) => {
+      try {
+         let favorite = await Favorite.findById(req.params.id);
+
+         if (!favorite) {
+            return next(new ErrorHander('Product not found', 404));
+         }
+         // Destroy and Remove
+         for (let i = 0; i < favorite.images.length; i++) {
+            await cloundinary.v2.uploader.destroy(favorite.images[i].public_id);
+         }
+
+         await favorite.remove();
+         res.json({ success: true, message: 'success', favorite });
+      } catch (e) {
+         return next(new ErrorHander(e, 400));
+      }
+   };
+
+
    fetchCountSubscribe = async (req, res, next) => {
       try {
          const countSubscribe = await Favorite.countDocuments({ 'favoriteItems' : {$elemMatch : {product : req.params.id}} });

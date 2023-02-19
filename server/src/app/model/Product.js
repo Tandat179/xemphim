@@ -10,6 +10,14 @@ const productSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Please Enter product Content'],
    },
+   thumb_url: {
+      type: String,
+      required: [true, 'Please Enter thumb Film'],
+   },
+   poster_url: {
+      type: String,
+      required: [true, 'Please Enter Poster Film'],
+   },
    time: {
       type: String,
       required: [true, 'Please Enter product Time'],
@@ -24,7 +32,11 @@ const productSchema = new mongoose.Schema({
    },
    approve: {
       type: Boolean,
-      required: [false, 'Please Enter product Language'],
+      default: false,
+   },
+   userFilm: {
+      type: Boolean,
+      default: false,
    },
    year: {
       type: Number,
@@ -67,11 +79,6 @@ const productSchema = new mongoose.Schema({
    link_embed: {
       type: String,
       required: [true, 'Please Enter Url Film'],
-   },
-
-   poster_url: {
-      type: String,
-      required: [true, 'Please Enter Poster Film'],
    },
 
    category: {
