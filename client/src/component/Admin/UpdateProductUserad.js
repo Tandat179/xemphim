@@ -38,6 +38,7 @@ const UpdateProduserad = () => {
     isUpdateImages: false,
     ispremium: produser.ispremium || false,
     link_embed: produser.link_embed || "",
+    approve: produser.approve || "",
     time: produser.time || "",
     quality: produser.quality || "",
     lang: produser.lang || "",
@@ -45,7 +46,6 @@ const UpdateProduserad = () => {
     country: produser.country || "",
     actor: produser.actor || " ",
     director: produser.director || " ",
-    approve: produser.approve || " ",
   });
   const handleOnChangeUpdate = (e) =>
     setFormUpdate({ ...formUpdate, [e.target.name]: e.target.value });
@@ -71,6 +71,7 @@ const UpdateProduserad = () => {
       images: produser.images || [],
       ispremium: produser.ispremium || "",
       link_embed: produser.link_embed || "",
+      approve: produser.approve || "",
       time: produser.time || "",
       quality: produser.quality || "",
       lang: produser.lang || "",
@@ -78,7 +79,6 @@ const UpdateProduserad = () => {
       country: produser.country || "",
       actor: produser.actor || " ",
       director: produser.director || " ",
-      approve: produser.approve || " ",
     });
     setOldImages(produser.images || []);
   }, [getOneProduser]);
@@ -241,6 +241,8 @@ const UpdateProduserad = () => {
                 <option value="0">Not Reached</option>
               </select>
             </div>
+
+
 
             {/* Year */}
             <div>

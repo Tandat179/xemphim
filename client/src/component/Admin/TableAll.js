@@ -23,8 +23,8 @@ export default function TableAll({field}) {
           key: "image",
           name: "Image",
           formatter: (image) =>  <img src={image.row.image} alt="sd" />,
-          
-          flex: 1,
+          minHeight: 550,
+          minWidth: 120, flex: 0.1
         },
         {
           key: "count",

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   padding: 4rem 0;
+
 }
 
 .sidebar > a > img {
@@ -40,6 +41,7 @@ k-treeview-leaf-text:hover {
   font: 200 1rem "Roboto";
   padding: 4rem;
   transition: all 0.5s;
+  padding-top:10rem
 }
 .sidebar a:hover {
   color: tomato;

@@ -49,7 +49,9 @@ export default function ChartDashbond({title,field,titleRight}) {
    <div>
    <h1 style={{textAlign : 'center' , color : 'red' , textShadow : '0 0 5px #999'}}>{title}</h1>
      <div style={{display : 'flex' , justifyContent : 'space-between' , width : '100%' , padding : '50px'}}>
-      <div style={{width : '50%' , display : 'flex' ,flexDirection : 'column' , alignItems : 'center' ,gap : '20px'}} >  <Pie data={datas} /> <Button onClick={() => setIsShowTable(!isShowTable)} variant="primary">Xem thêm</Button></div>
+      <div style={{width : '50%' , display : 'flex' ,flexDirection : 'column' , alignItems : 'center' ,gap : '20px'}} > 
+       <Pie data={datas} /> 
+       <Button onClick={() => setIsShowTable(!isShowTable)} variant="primary">Xem thêm</Button></div>
    {data &&  <Ranking field={field} title={titleRight} data={data}/>}
     </div>
    {isShowTable &&  <TableAll field={field}/>}

@@ -5,6 +5,8 @@ import axios from "axios";
 import {
   getMyFavoritesSuccess,
   getMyFavoritesFail,
+  deleteMyFavoriteSuccess,
+  deleteMyFavoriteFail
 } from "./reducer/favoriteAction";
 import setAuthToken from "../../utils/setAuthToken";
 
@@ -31,9 +33,27 @@ function FavoriteProvider({ children }) {
     }
   };
 
+  const deleteMyFavorite = async (id) => {
+    if (localStorage["auth-token"]) {
+      setAuthToken(localStorage["auth-token"]);
+    }
+    try {
+      console.log(id);
+      const response = await axios.delete(
+        `http://localhost:4000/favorite/delete/${id}`
+      );
+
+      if (response.data.success) dispatch(deleteMyFavoriteSuccess(id));
+    } catch (error) {
+      console.log("erorororor");
+      dispatch(deleteMyFavoriteFail(error.response.data.message));  
+    }
+  };
+
   const favoriteContext = {
     favoriteState,
     getMyFavorites,
+    deleteMyFavorite,
   };
 
   return (

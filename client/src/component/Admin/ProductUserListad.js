@@ -48,26 +48,26 @@ const ProduserUserListad = () => {
     deleteProduser(id);
   };
 
-  // const formatterName = ({ images, name }) => {
-  //   return (
-  //     <div>
-  //       <img alt={images[0].images} src={images[0].url} />
-  //       <p>{name}</p>
-  //     </div>
-  //   );
-  // };
+  const formatterName = ({ images, name }) => {
+    return (
+      <div>
+        <img alt={images[0].images} src={images[0].url} />
+        <p>{name}</p>
+      </div>
+    );
+  };
 
   const columns = [
     { key: "stt", name: "STT", minWidth: 120, flex: 0.1 },
 
-    // {
-    //   key: "name",
-    //   name: "Name",
+    {
+      key: "name",
+      name: "Name",
 
-    //   // formatter: (name, image) => {
-    //   //   return formatterName(name.row.name);
-    //   // },
-    // },
+      formatter: (name, image) => {
+        return formatterName(name.row.name);
+      },
+    },
 
     {
       key: "category",
@@ -117,7 +117,7 @@ const ProduserUserListad = () => {
         produserId: produser._id,
         category: produser.category,
         stock: produser.stock,
-        // name: { name: produser.name, images: produser.images },
+        name: { name: produser.name, images: produser.images },
         content: produser.content,
         ispremium: String(produser.ispremium),
         approve: String(produser.approve),
@@ -146,7 +146,7 @@ const ProduserUserListad = () => {
       <div className="dashboardProduct">
         <Sidebar />
         <div className="productListContainer">
-          <h1 id="productListHeading">ALL Product User List (Admin) </h1>
+          <h1 id="productListHeading">ALL Product User78776 List (Admin) </h1>
           <form className="searchBox">
             <input
               type="text"

@@ -180,7 +180,7 @@ const ProductDetails = () => {
                 {" "}
                 ({product.numOfReviews} Reviews)
               </span> */}
-            <Button
+            {/* <Button
               disabled={product.Stock < 1 ? true : false}
               onClick={addToCartHandler}
             >
@@ -189,7 +189,7 @@ const ProductDetails = () => {
 
             <Button onClick={cartSubmitHandler} variant="primary">
               Go to Love List
-            </Button>
+            </Button> */}
           </div>
         </div>{" "}
         {isAuthenticated ? (

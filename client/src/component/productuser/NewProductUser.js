@@ -11,7 +11,7 @@ import AttachMoneyIcon from "../../assets/cash.svg";
 import { CATEGORIES } from "../../consts/category";
 import { COUNTRY } from "../../consts/country";
 
-import SideBar from "../Admin/SideBar";
+import SideBar from "../../component/productuser/sidebaruser";
 
 const NewProduser = () => {
   //Get creteProduser method from Produser C0ntext
@@ -33,9 +33,10 @@ const NewProduser = () => {
     // description: "",
     // category: "",
     // stock: "",
-    content: "",
     time: "",
     quality: "",
+    thumb_url: "",
+    poster_url: "",
     lang: "",
     year: "",
     country: "",
@@ -45,8 +46,9 @@ const NewProduser = () => {
     // ratings: "",
     images: [],
     link_embed: "",
-    poster_url: "",
+    // poster_url: "",
     category: "",
+    userFilm: "",
   });
 
   const handleOnChangeCreate = (e) =>
@@ -69,7 +71,7 @@ const NewProduser = () => {
     e.preventDefault();
     loadingShow();
     createProduser(formCreate);
-    navigate("/produser/list", { replace: true });
+    navigate("/produsers", { replace: true });
   };
 
   const createProduserImagesChange = (e) => {
@@ -99,15 +101,6 @@ const NewProduser = () => {
 
   return (
     <Fragment>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
@@ -123,7 +116,7 @@ const NewProduser = () => {
 
               <input
                 type="text"
-                placeholder="Produser Name"
+                placeholder="Tên phim"
                 required
                 value={formCreate.name}
                 onChange={handleOnChangeCreate}
@@ -137,11 +130,34 @@ const NewProduser = () => {
 
               <input
                 type="text"
-                placeholder="Content"
+                placeholder="Nội dung"
                 required
                 value={formCreate.content}
                 onChange={handleOnChangeCreate}
                 name="content"
+              />
+            </div>
+            <div>
+              <img src={SpellcheckIcon} alt="s" className="svgImg" />
+              <input
+                type="text"
+                placeholder="Hình ảnh"
+                required
+                value={formCreate.thumb_url}
+                onChange={handleOnChangeCreate}
+                name="thumb_url"
+              />
+            </div>
+
+            <div>
+              <img src={SpellcheckIcon} alt="s" className="svgImg" />
+              <input
+                type="text"
+                placeholder="Poster"
+                required
+                value={formCreate.poster_url}
+                onChange={handleOnChangeCreate}
+                name="poster_url"
               />
             </div>
 
@@ -151,7 +167,7 @@ const NewProduser = () => {
 
               <input
                 type="text"
-                placeholder="Time"
+                placeholder="Thời lượng"
                 required
                 value={formCreate.time}
                 onChange={handleOnChangeCreate}
@@ -165,7 +181,10 @@ const NewProduser = () => {
                 name="quality"
                 value={formCreate.quality || ""}
                 onChange={handleOnChangeCreate}
+                placeholder="Chất lượng"
               >
+                <option value="HD">Chất lượng</option>
+
                 <option value="HD">HD</option>
                 <option value="1080p">1080p</option>
                 <option value="720p">720p</option>
@@ -179,6 +198,8 @@ const NewProduser = () => {
                 value={formCreate.lang || ""}
                 onChange={handleOnChangeCreate}
               >
+                <option value="Thuyết Minh">Ngôn ngữ</option>
+
                 <option value="Thuyết Minh">Thuyết Minh</option>
                 <option value="VietSub">VietSub</option>
               </select>
@@ -189,7 +210,7 @@ const NewProduser = () => {
 
               <input
                 type="Number"
-                placeholder="Year"
+                placeholder="Năm sản xuất"
                 required
                 value={formCreate.year}
                 onChange={handleOnChangeCreate}
@@ -201,7 +222,7 @@ const NewProduser = () => {
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
 
               <select onChange={handleOnChangeCreate} name="country">
-                <option value="">Choose Country</option>
+                <option value="">Quốc gia</option>
                 {COUNTRY.map((coun) => (
                   <option key={coun} value={coun}>
                     {coun}
@@ -215,7 +236,7 @@ const NewProduser = () => {
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
-                placeholder="Actor"
+                placeholder="Diễn viên"
                 required
                 value={formCreate.actor}
                 onChange={handleOnChangeCreate}
@@ -228,7 +249,7 @@ const NewProduser = () => {
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
-                placeholder="Director"
+                placeholder="Đạo diễn"
                 required
                 value={formCreate.director}
                 onChange={handleOnChangeCreate}
@@ -241,7 +262,7 @@ const NewProduser = () => {
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
-                placeholder="Link_Embed"
+                placeholder="Nguồn phim"
                 required
                 value={formCreate.link_embed}
                 onChange={handleOnChangeCreate}
@@ -250,7 +271,7 @@ const NewProduser = () => {
             </div>
 
             {/* poster_url */}
-            <div>
+            {/* <div>
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
@@ -260,7 +281,7 @@ const NewProduser = () => {
                 onChange={handleOnChangeCreate}
                 name="poster_url"
               />
-            </div>
+            </div> */}
 
             {/* Premium */}
             <div>
@@ -270,8 +291,8 @@ const NewProduser = () => {
                 value={formCreate.ispremium || ""}
                 onChange={handleOnChangeCreate}
               >
-                <option value="1">true</option>
-                <option value="0">false</option>
+                <option value="1">Cao cấp</option>
+                <option value="0">Mặc định</option>
               </select>
             </div>
 
@@ -279,12 +300,23 @@ const NewProduser = () => {
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
 
               <select onChange={handleOnChangeCreate} name="category">
-                <option value="">Choose Category</option>
+                <option value="">Thể loại</option>
                 {CATEGORIES.map((cate) => (
                   <option key={cate} value={cate}>
                     {cate}
                   </option>
                 ))}
+              </select>
+            </div>
+            <div>
+              <img src={AccountTreeIcon} alt="s" className="svgImg" />
+              <select
+                name="userFilm"
+                value={formCreate.userFilm || ""}
+                onChange={handleOnChangeCreate}
+              >
+                <option value="1">Apply</option>
+                <option value="0">Not apply</option>
               </select>
             </div>
 
@@ -305,7 +337,7 @@ const NewProduser = () => {
             </div>
 
             <button id="createProduserBtn" type="submit">
-              Create
+              Tạo Phim
             </button>
           </form>
         </div>

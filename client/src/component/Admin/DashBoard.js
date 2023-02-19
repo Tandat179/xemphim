@@ -142,13 +142,13 @@ const Dashboard = () => {
       <ChartDashbond title="Thống kê lượt Thích" field="CountLike" titleRight="Phim có lượt Thích cao nhất"/>
       <ChartDashbondFavorite />
           {/* Line of Dashboard */}
-          <div className="lineChart">
+          {/* <div className="lineChart">
             <Line data={lineState} />
           </div>
         
           <div className="doughnutChart">
             <Doughnut data={doughnutState} />
-          </div>
+          </div> */}
    
       </div>
     </div>

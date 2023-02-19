@@ -1,4 +1,7 @@
-import { GET_MY_FAVORITES_SUCCESS } from "./favoriteAction";
+import {
+  GET_MY_FAVORITES_SUCCESS,
+  DELETE_MY_FAVORITES_SUCCESS,
+} from "./favoriteAction";
 
 export const favoriteInit = {
   favorites: [],
@@ -14,6 +17,14 @@ export const favoriteReducer = (state, action) => {
       return {
         ...state,
         favorites: payload,
+      };
+
+    case DELETE_MY_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        favorites: state.favorites.filter(
+          (favorite) => favorite._id !== payload
+        ),
       };
 
     default:

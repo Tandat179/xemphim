@@ -42,33 +42,32 @@ const ProduserUserList = () => {
     );
   };
 
-
   const deleteProduserHandler = (id) => {
     loadingShow();
     console.log("============================", id);
     deleteProduser(id);
   };
 
-  // const formatterName = ({ images, name }) => {
-  //   return (
-  //     <div>
-  //       <img alt={images[0].images} src={images[0].url} />
-  //       <p>{name}</p>
-  //     </div>
-  //   );
-  // };
+  const formatterName = ({ images, name }) => {
+    return (
+      <div>
+        <img alt={images.images} src={images[0].url} />
+        <p>{name}</p>
+      </div>
+    );
+  };
 
   const columns = [
     { key: "stt", name: "STT", minWidth: 120, flex: 0.1 },
 
-    // {
-    //   key: "name",
-    //   name: "Name",
+    {
+      key: "name",
+      name: "Name",
 
-    //   // formatter: (name, image) => {
-    //   //   return formatterName(name.row.name);
-    //   // },
-    // },
+      formatter: (name, image) => {
+        return formatterName(name.row.name);
+      },
+    },
 
     {
       key: "category",
@@ -95,6 +94,11 @@ const ProduserUserList = () => {
     },
 
     {
+      key: "Approve",
+      name: "Tình trạng",
+    },
+
+    {
       key: "actions",
       name: "Actions",
       type: "number",
@@ -113,8 +117,10 @@ const ProduserUserList = () => {
         stt: STT,
         produserId: produser._id,
         category: produser.category,
+        approve: produser.approve,
+
         stock: produser.stock,
-        // name: { name: produser.name, images: produser.images },
+        name: { name: produser.name, images: produser.images },
         content: produser.content,
         ispremium: String(produser.ispremium),
         link_embed: produser.link_embed,

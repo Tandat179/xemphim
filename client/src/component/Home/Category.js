@@ -11,9 +11,6 @@ import "./home.css";
 export default function Category({title,filter,filterCustom,isHot}) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-
-
   return (
     <div className="section__header mb2">
     <h1>{title}</h1>
@@ -32,10 +29,7 @@ export default function Category({title,filter,filterCustom,isHot}) {
     </div>
     <br></br>
     {filter && <ListMovie filter={filter}/>}
-    
    {filterCustom && <ListMovieCustom filterCustom={filterCustom}/>}
-
-     
     <div className="section__header mb2"></div>
     <br></br>
   </div>

@@ -33,6 +33,8 @@ const UpdateProduser = () => {
     // price: produser.price || "",
     content: produser.content || "",
     category: produser.category || "",
+    thumb_url:produser.thumb_url ||"",
+    poster_url:produser.poster_url|| "",
     stock: produser.stock || "",
     images: produser.images || [],
     isUpdateImages: false,
@@ -65,6 +67,8 @@ const UpdateProduser = () => {
       name: produser.name || "",
       // price: produser.price || "",
       content: produser.content || "",
+      thumb_url:produser.thumb_url ||"",
+      poster_url:produser.poster_url|| "",
       category: produser.category || "",
       stock: produser.stock || 0,
       images: produser.images || [],
@@ -156,6 +160,28 @@ const UpdateProduser = () => {
                 value={formUpdate.link_embed || " "}
                 onChange={handleOnChangeUpdate}
                 name="link_embed"
+              />
+            </div>
+            <div>
+              <img src={SpellcheckIcon} alt="s" className="svgImg" />
+              <input
+                type="text"
+                placeholder="thumb_url"
+                required
+                value={formUpdate.thumb_url || " "}
+                onChange={handleOnChangeUpdate}
+                name="thumb_url"
+              />
+            </div>
+            <div>
+              <img src={SpellcheckIcon} alt="s" className="svgImg" />
+              <input
+                type="text"
+                placeholder="poster_url"
+                required
+                value={formUpdate.poster_url || " "}
+                onChange={handleOnChangeUpdate}
+                name="poster_url"
               />
             </div>
 

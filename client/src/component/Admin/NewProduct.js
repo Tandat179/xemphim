@@ -36,6 +36,8 @@ const NewProduct = () => {
     content: "",
     time: "",
     quality: "",
+    thumb_url: "",
+    poster_url: "",
     lang: "",
     year: "",
     country: "",
@@ -45,7 +47,6 @@ const NewProduct = () => {
     // ratings: "",
     images: [],
     link_embed: "",
-    poster_url: "",
     category: "",
   });
 
@@ -114,7 +115,7 @@ const NewProduct = () => {
 
               <input
                 type="text"
-                placeholder="Product Name"
+                placeholder="Tên Phim"
                 required
                 value={formCreate.name}
                 onChange={handleOnChangeCreate}
@@ -128,11 +129,34 @@ const NewProduct = () => {
 
               <input
                 type="text"
-                placeholder="Content"
+                placeholder="Nội dung"
                 required
                 value={formCreate.content}
                 onChange={handleOnChangeCreate}
                 name="content"
+              />
+            </div>
+            <div>
+              <img src={SpellcheckIcon} alt="s" className="svgImg" />
+              <input
+                type="text"
+                placeholder="Hình ảnh"
+                required
+                value={formCreate.thumb_url}
+                onChange={handleOnChangeCreate}
+                name="thumb_url"
+              />
+            </div>
+
+            <div>
+              <img src={SpellcheckIcon} alt="s" className="svgImg" />
+              <input
+                type="text"
+                placeholder="Poster"
+                required
+                value={formCreate.poster_url}
+                onChange={handleOnChangeCreate}
+                name="poster_url"
               />
             </div>
 
@@ -142,16 +166,13 @@ const NewProduct = () => {
 
               <input
                 type="text"
-                placeholder="Time"
+                placeholder="Thời lượng"
                 required
                 value={formCreate.time}
                 onChange={handleOnChangeCreate}
                 name="time"
               />
             </div>
-
-
-
 
             <div>
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
@@ -160,14 +181,13 @@ const NewProduct = () => {
                 value={formCreate.quality || ""}
                 onChange={handleOnChangeCreate}
               >
+                {" "}
+                <option value="HD">Chất lượng</option>
                 <option value="HD">HD</option>
                 <option value="1080p">1080p</option>
                 <option value="720p">720p</option>
-
               </select>
             </div>
-
-
 
             {/* Quality */}
             {/* <div>
@@ -183,23 +203,19 @@ const NewProduct = () => {
               />
             </div> */}
 
-
-
-
-
-           
-                <div>
+            <div>
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
               <select
                 name="lang"
                 value={formCreate.lang || ""}
                 onChange={handleOnChangeCreate}
               >
+                <option value="Thuyết Minh">Ngôn ngữ</option>
+
                 <option value="Thuyết Minh">Thuyết Minh</option>
                 <option value="VietSub">VietSub</option>
               </select>
             </div>
-
 
             {/* lang */}
             {/* <div>
@@ -221,18 +237,13 @@ const NewProduct = () => {
 
               <input
                 type="Number"
-                placeholder="Year"
+                placeholder="Năm sản xuất"
                 required
                 value={formCreate.year}
                 onChange={handleOnChangeCreate}
                 name="year"
               />
             </div>
-
-            
-
-
-
 
             <div>
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
@@ -246,7 +257,6 @@ const NewProduct = () => {
                 ))}
               </select>
             </div>
-
 
             {/* Country */}
             {/* <div>
@@ -266,7 +276,7 @@ const NewProduct = () => {
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
-                placeholder="Actor"
+                placeholder="Diễn viên"
                 required
                 value={formCreate.actor}
                 onChange={handleOnChangeCreate}
@@ -279,7 +289,7 @@ const NewProduct = () => {
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
-                placeholder="Director"
+                placeholder="Đạo diễn"
                 required
                 value={formCreate.director}
                 onChange={handleOnChangeCreate}
@@ -292,7 +302,7 @@ const NewProduct = () => {
               <img src={SpellcheckIcon} alt="s" className="svgImg" />
               <input
                 type="text"
-                placeholder="Link_Embed"
+                placeholder="Nguồn phim"
                 required
                 value={formCreate.link_embed}
                 onChange={handleOnChangeCreate}
@@ -301,17 +311,6 @@ const NewProduct = () => {
             </div>
 
             {/* poster_url */}
-            <div>
-              <img src={SpellcheckIcon} alt="s" className="svgImg" />
-              <input
-                type="text"
-                placeholder="Poster_url"
-                required
-                value={formCreate.poster_url}
-                onChange={handleOnChangeCreate}
-                name="poster_url"
-              />
-            </div>
 
             {/* Premium */}
             <div>
@@ -321,8 +320,8 @@ const NewProduct = () => {
                 value={formCreate.ispremium || ""}
                 onChange={handleOnChangeCreate}
               >
-                <option value="1">true</option>
-                <option value="0">false</option>
+                <option value="1">Cao cấp</option>
+                <option value="0">Mặc định</option>
               </select>
             </div>
 
@@ -354,7 +353,7 @@ const NewProduct = () => {
               ></textarea>
             </div> */}
 
-            <div>
+            {/* <div>
               <img src={AccountTreeIcon} alt="s" className="svgImg" />
 
               <select onChange={handleOnChangeCreate} name="category">
@@ -365,7 +364,7 @@ const NewProduct = () => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
 
             {/* <div>
               <img src={StorageIcon} alt="s" className="svgImg" />

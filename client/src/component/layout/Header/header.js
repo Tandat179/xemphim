@@ -29,9 +29,13 @@ export const Header = () => {
       path: "/products",
     },
     {
-      display: "Trend",
-      path: "/product/recommendation/63dfbb5abc884effdcede5df",
+      display: "Favorite",
+      path: "/favorites",
     },
+    // {
+    //   display: "Trend",
+    //   path: "/product/recommendation/63dfbb5abc884effdcede5df",
+    // },
     // {
     //   display: "Cart",
     //   path: "/cart",
@@ -106,11 +110,11 @@ export const Header = () => {
                     />{" "}
                     Profile
                   </NavDropdown.Item>
-
+{/* 
                   <NavDropdown.Item to="/orders" as={Link}>
                     <img src={ListOrder} alt="cart" className="filter-green" />{" "}
                     Orders
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> */}
 
                   {/* <NavDropdown.Item to="/favorites" as={Link}>
                     <img src={ListOrder} alt="cart" className="filter-green" />{" "}
@@ -127,7 +131,7 @@ export const Header = () => {
                   {user.role === "user" && (
                     <NavDropdown.Item to="/produser/create" as={Link}>
                       <img src={Manage} alt="cart" className="filter-green" />{" "}
-                      Đối tác
+                      Tạo Phim
                     </NavDropdown.Item>
                   )}
 
@@ -138,10 +142,11 @@ export const Header = () => {
                     </NavDropdown.Item>
                   )}
 
-                  <NavDropdown.Item to="/cart" as={Link}>
+                  {/* <NavDropdown.Item to="/cart" as={Link}>
                     <img src={CartLogo} alt="cart" className="filter-green" />{" "}
                     Cart
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> */}
+                  
                   <NavDropdown.Divider />
 
                   <NavDropdown.Item onClick={handleClick}>

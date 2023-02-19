@@ -14,6 +14,8 @@ import { useDispatch } from "react-redux";
 import { removeQueryFetch } from "../../redux/pageStore";
 import CategoryCate from "./CategoryCate";
 import { AuthContext } from "../../context/auth/AuthContext";
+import CateRecommend from "./CateRecommend";
+import CategoryMultiFilter from "./CategoryMultiFilter";
 
 // import HeroSlide from "../hero-slide/HeroSlide";
 function Home() {
@@ -53,7 +55,8 @@ function Home() {
       <br></br>
 
       <div className="container" id="container">
-        <p>{user._id}</p>
+        {/* <p>{user._id}</p> */}
+        <CateRecommend />
         <Category
           title="Phim Hot"
           isHot={true}
@@ -63,27 +66,18 @@ function Home() {
         <Category
           title="Phim Premium"
           filter={{ filter: "ispremium", value: true }}
-        />
+        ></Category>
         <Category
           title="Phim Miễn Phí"
           filter={{ filter: "ispremium", value: false }}
         />
-        <CategoryCate
-          title="Hành động"
-          filter={{ filter: "category", value: "Hanh Dong" }}
-        />
         Test
-        {/* <Category
-          title="approvefalse"
-          filter={{ filter: "approve", value: false }}
-        />
-        <Category
-          title="approvetrue"
-          filter={{ filter: "approve", value: false }}
-        /> */}
-        <CategoryCate
-          title="approveeee"
-          filter={{ filter: "approve", value: true }}
+        <CategoryMultiFilter
+          title="Phim Hmulti"
+          filter={[
+            { filter: "approve", value: true },
+            { filter: "userFilm", value: true },
+          ]}
         />
       </div>
     </Fragment>
