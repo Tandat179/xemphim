@@ -22,7 +22,7 @@ export default function TableAll({field}) {
         {
           key: "image",
           name: "Image",
-          formatter: (image) =>  <img src={image.row.image} alt="sd" />,
+          formatter: (image) =>  <img style={{objectFit : 'cover' ,height : '100%',width : '20%'}} src={image.row.image} alt="sd" />,
           minHeight: 550,
           minWidth: 120, flex: 0.1
         },
@@ -50,8 +50,7 @@ export default function TableAll({field}) {
         disableSelectionOnClick
         className="myOrdersTable"
         autoHeight
-        headerRowHeight={35}
-        rowHeight={80}
+        rowHeight={110}
       />}
        <div style={{background : 'black'}}>
        {data && <Pagination

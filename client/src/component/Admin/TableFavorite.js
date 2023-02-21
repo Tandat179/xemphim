@@ -23,7 +23,7 @@ export default function TableFavorite() {
         {
           key: "image",
           name: "Image",
-          formatter: (image) =>  <img src={image.row.image} alt="sd" />,
+          formatter: (image) =>  <img style={{objectFit : 'cover' , height : '100%' , width : '20%'}} src={image.row.image} alt="sd" />,
           
           flex: 1,
         },
@@ -51,8 +51,7 @@ export default function TableFavorite() {
         disableSelectionOnClick
         className="myOrdersTable"
         autoHeight
-        headerRowHeight={35}
-        rowHeight={80}
+        rowHeight={105}
       />}
        <div style={{background : 'black'}}>
        <Pagination

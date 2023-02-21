@@ -106,7 +106,7 @@ function ProduserProvider({ children }) {
       );
 
       if (response.data.success){
-
+        toast.success("Đăng thành công")
         dispatch(createProduserSuccess(response.data.produser));
         callback();
       }else{
