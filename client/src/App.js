@@ -473,7 +473,7 @@ function App() {
           <Route extact path="/" element={<Home />} />
           {/* <Route extact path="/listt" element={<ListMovie/>} /> */}
         </Routes>
-        {/* <Footer></Footer> */}
+        <Footer></Footer>
       </Router>
     </QueryClientProvider>
   );

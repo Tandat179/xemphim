@@ -19,20 +19,17 @@ class FavoriteController {
       }
    };
 
-   deleteMyFavorite = async (req, res, next) => {
+   deleteFavorites = async (req, res, next) => {
       try {
-         let favorite = await Favorite.findById(req.params.id);
-
-         if (!favorite) {
-            return next(new ErrorHander('Product not found', 404));
+         const item = req.body
+         const favorites = await Favorite.findByIdAndUpdate(item._id,item);
+         if (!favorites) {
+            return next(new ErrorHander('favorites not Found', 400));
          }
-         // Destroy and Remove
-         for (let i = 0; i < favorite.images.length; i++) {
-            await cloundinary.v2.uploader.destroy(favorite.images[i].public_id);
-         }
-
-         await favorite.remove();
-         res.json({ success: true, message: 'success', favorite });
+         res.json({
+            success: true,
+            favorites,
+         });
       } catch (e) {
          return next(new ErrorHander(e, 400));
       }

@@ -24,6 +24,7 @@ import {
   // deleteReviewFail,
   // deleteReviewSuccess,
 } from "./reducer/produserAction";
+import { toast } from "react-hot-toast";
 
 function ProduserProvider({ children }) {
   const [produserState, dispatch] = useReducer(produserReducer, produserInit);
@@ -94,7 +95,7 @@ function ProduserProvider({ children }) {
   // };
 
   //Create produser
-  const createProduser = async (formCraete) => {
+  const createProduser = async (formCraete,callback) => {
     if (localStorage["auth-token"]) {
       setAuthToken(localStorage["auth-token"]);
     }
@@ -104,8 +105,13 @@ function ProduserProvider({ children }) {
         formCraete
       );
 
-      if (response.data.success)
+      if (response.data.success){
+
         dispatch(createProduserSuccess(response.data.produser));
+        callback();
+      }else{
+        toast.error("Phim đã được đăng")
+      }
     } catch (error) {
       dispatch(createProduserFail(error.response.data.message));
     }

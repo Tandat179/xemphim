@@ -30,8 +30,17 @@ class ProduserController {
 
          req.body.images = imagesLinks;
          req.body.user = req.user._id;
+         const {poster_url , link_embed,name} = req.body
 
-         const produser = await Produser.create(req.body);
+         const produserExits = await Produser.find({$or : [{poster_url},{link_embed},{name}]});
+                 if(produserExits.length > 0){
+                    res.json({ success: false, produserExits });
+                 }
+                 else{
+                    const produser = await Produser.create(req.body);
+                     res.json({ success: true, produser });
+                 }
+        
 
          res.json({ success: true, produser });
       } catch (e) {

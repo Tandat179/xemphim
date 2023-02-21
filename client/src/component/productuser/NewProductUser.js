@@ -12,6 +12,7 @@ import { CATEGORIES } from "../../consts/category";
 import { COUNTRY } from "../../consts/country";
 
 import SideBar from "../../component/productuser/sidebaruser";
+import { Toaster } from "react-hot-toast";
 
 const NewProduser = () => {
   //Get creteProduser method from Produser C0ntext
@@ -70,8 +71,8 @@ const NewProduser = () => {
   const createProduserSubmitHandler = (e) => {
     e.preventDefault();
     loadingShow();
-    createProduser(formCreate);
-    navigate("/produsers", { replace: true });
+    createProduser(formCreate,() =>  navigate("/produsers", { replace: true }));
+   
   };
 
   const createProduserImagesChange = (e) => {
@@ -101,6 +102,7 @@ const NewProduser = () => {
 
   return (
     <Fragment>
+    <Toaster />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
@@ -328,13 +330,12 @@ const NewProduser = () => {
                 onChange={createProduserImagesChange}
                 multiple
               />
+                <div id="createProductFormImage">
+                <img  src={imagesPreview[0] || "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"} alt="Product Preview" />
+            </div>
             </div>
 
-            <div id="createProductFormImage">
-              {imagesPreview.map((image, index) => (
-                <img key={index} src={image} alt="Product Preview" />
-              ))}
-            </div>
+          
 
             <button id="createProduserBtn" type="submit">
               Tạo Phim

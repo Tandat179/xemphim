@@ -9,7 +9,6 @@ import "../Home/movie-card.scss";
 import { FaPlay } from "react-icons/fa";
 import Button from "../button/Button";
 import axiosClient from "../../api/axiosClient";
-import { FaPlay } from "react-icons/fa";
 
 import { useQuery } from "@tanstack/react-query";
 function ListMovieCustom({ filterCustome }) {

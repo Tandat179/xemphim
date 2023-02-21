@@ -19,9 +19,10 @@
   align-items: center;
   margin: auto;
   margin-top: 12vh;
+  gap: 5px;
   padding: 3vmax;
   justify-content: space-evenly;
-  height: 80%;
+  height: auto;
   width: 120vh;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
