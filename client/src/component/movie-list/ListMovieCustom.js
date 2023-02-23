@@ -36,13 +36,15 @@ function ListMovieCustom({ filterCustome }) {
       ) : (
         data?.products.map((values, index) => (
           <SplideSlide key={v4()}>
-            <Link to={`/product/${values.product._id}`}>
+            <Link to={`/product/${values?.product?._id}`}>
               <div
                 className="movie-card"
-                style={{ backgroundImage: `url(${values.product.thumb_url})` }}
+                style={{
+                  backgroundImage: `url(${values?.product?.thumb_url})`,
+                }}
                 // style={{ backgroundImage: `url(${values.product.images[0].url})` }}
               >
-                {values.product.ispremium && (
+                {values?.product?.ispremium && (
                   <img
                     style={{ position: "absolute", width: "150px", top: -20 }}
                     src="https://d28wu8o6itv89t.cloudfront.net/images/achatpremiumnomdedomainepointp-1539465350573.png"
@@ -55,7 +57,7 @@ function ListMovieCustom({ filterCustome }) {
                 </Button>
               </div>
               <div className="card-title">
-                <h3>{values.product.name}</h3>
+                <h3>{values?.product?.name}</h3>
               </div>
             </Link>
           </SplideSlide>
